@@ -14,7 +14,7 @@ This repo is a Three-Act essay.
   - [ProTip 2: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
   - [ProTip 3: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
 - [Epilogue](#sunglasses-epilogue-sunglasses)
-- [Appendix](#sunglasses-appendix-sunglasses)
+  - [Appendix](#appendix)
 
 ## :sunglasses: Prologue: Who this document is for :sunglasses:
 
@@ -959,7 +959,7 @@ Like / Retweet appreciated!
 [![screenshot 2016-08-10 at 4 06 54 pm](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
 ](https://twitter.com/chibicode/status/763504990736388096)
 
-## :sunglasses: Appendix :sunglasses:
+### Appendix
 
 Some miscellaneous links I found helpful:
 
