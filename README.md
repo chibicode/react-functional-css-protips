@@ -21,7 +21,7 @@ I've originally written this to help my coworkers learn functional CSS, but mayb
 
 - If you're already sold on:
 
-  1. Writing CSS in a **functional** (or atomic/immutable/utility) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
+  1. Writing CSS in a **functional** (or atomic/immutable/utility-class) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
   2. Writing front-end in **[React.js](https://facebook.github.io/react/)**
 
   Then skip to **"ACT II: Some downsides of using functional CSS"** section.
