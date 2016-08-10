@@ -14,6 +14,7 @@ This repo is a Three-Act essay.
   - [ProTip 2: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
   - [ProTip 3: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
 - [Epilogue](#sunglasses-epilogue-sunglasses)
+- [Appendix](#sunglasses-appendix-sunglasses)
 
 ## :sunglasses: Prologue: Who this document is for :sunglasses:
 
@@ -233,8 +234,7 @@ Great! Here are some more articles on functional CSS:
 
 - [Building and shipping functional CSS](https://blog.colepeters.com/building-and-shipping-functional-css/) by Cole Peters
 - [Rationalizing Functional CSS](https://marcelosomers.com/writing/rationalizing-functional-css/) by Marcelo Somers
-- [Functional Programming, CSS, and your sanity](http://www.jon.gold/2015/07/functional-css/) by Jon Gold, and his [immutable-css](https://github.com/johnotander/immutable-css) library
-- [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
+- [Functional Programming, CSS, and your sanity](http://www.jon.gold/2015/07/functional-css/) by Jon Gold
 
 And here are some real-world styleguides that use functional CSS:
 
@@ -958,3 +958,10 @@ Like / Retweet appreciated!
 
 [![screenshot 2016-08-10 at 4 06 54 pm](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
 ](https://twitter.com/chibicode/status/763504990736388096)
+
+## :sunglasses: Appendix :sunglasses:
+
+Some miscellaneous links I found helpful:
+
+- [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
+- [immutable-css](https://github.com/johnotander/immutable-css) by John Otander,
