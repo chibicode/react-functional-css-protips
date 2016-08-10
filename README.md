@@ -234,6 +234,7 @@ Great! Here are some more articles on functional CSS:
 - [Building and shipping functional CSS](https://blog.colepeters.com/building-and-shipping-functional-css/) by Cole Peters
 - [Rationalizing Functional CSS](https://marcelosomers.com/writing/rationalizing-functional-css/) by Marcelo Somers
 - [Functional Programming, CSS, and your sanity](http://www.jon.gold/2015/07/functional-css/) by Jon Gold, and his [immutable-css](https://github.com/johnotander/immutable-css) library
+- [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
 
 And here are some real-world styleguides that use functional CSS:
 
