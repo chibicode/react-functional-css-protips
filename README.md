@@ -964,4 +964,4 @@ Like / Retweet appreciated!
 Some miscellaneous links I found helpful:
 
 - [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
-- [immutable-css](https://github.com/johnotander/immutable-css) by John Otander,
+- [immutable-css](https://github.com/johnotander/immutable-css) by John Otander
