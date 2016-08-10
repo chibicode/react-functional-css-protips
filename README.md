@@ -223,7 +223,7 @@ Great! Here are some more articles on functional CSS:
 
 And here are some real-world styleguides that use functional CSS:
 
-- [Solid, Buzzfeed's Functional CSS Style Guide](http://solid.buzzfeed.com/) ([Blog Post](http://solid.buzzfeed.com/))
+- [Solid, Buzzfeed's Functional CSS Style Guide](http://solid.buzzfeed.com/) ([Blog Post](https://medium.com/buzzfeed-design/introducing-solid-1c16b1bf4868))
 - [Marvel's Functional CSS Style Guide](https://marvelapp.com/styleguide/) ([Blog Post](https://blog.marvelapp.com/the-marvel-styleguide/))
 
 ### [Basscss](http://basscss.com/) or [Tachyons](http://tachyons.io/)? How to customize each?
