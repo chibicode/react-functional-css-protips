@@ -929,6 +929,8 @@ This is powerful - you get the best of everything.
 
 Functional CSS is powerful, but with React, you can make it even more so. Try using virtual classes and CSS modules, encapsulated under the simple `cn` function. Your mileage may vary, but I'm enjoying it so far.
 
+Opening issues and pull requests are highly appreciated!
+
 ### Author
 
 **Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
