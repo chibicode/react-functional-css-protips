@@ -4,6 +4,8 @@
 
 ## :sunglasses: Who this document is for :sunglasses:
 
+I've originally written this to help my coworkers learn functional CSS, but maybe you'll find it helpful too.
+
 - If you're already sold on:
 
   1. Writing CSS in a **functional** (or atomic/immutable/utility) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
@@ -256,7 +258,7 @@ I use both. I encourage you to learn [Basscss](http://basscss.com/) first becaus
 
 As of this writing, [similar utilities are available on Basscss as addons](https://github.com/basscss/addons).
 
-The new CSS variables used in both Basscss and Tachyons (like `var(--name)` or `@custom-media`) can be customized by using [PostCSS](https://github.com/postcss/postcss) with [postcss-cssnext](https://github.com/MoOx/postcss-cssnext) plugin. If you're using [Webpack](https://webpack.github.io/) to load your React code, use [postcss-loader](https://github.com/postcss/postcss-loader) with [postcss-import](https://github.com/postcss/postcss-loader#integration-with-postcss-import). You can learn more about cssnext [here](http://cssnext.io/features/) and postcss [here](http://cssnext.io/postcss/).
+The new CSS variables used in both Basscss and Tachyons (like `var(--name)` or `@custom-media`) can be customized by using [PostCSS](https://github.com/postcss/postcss) with [postcss-cssnext](https://github.com/MoOx/postcss-cssnext) plugin. If you're using [Webpack](https://webpack.github.io/) to load your React code, use [postcss-loader](https://github.com/postcss/postcss-loader) with [postcss-import](https://github.com/postcss/postcss-loader#integration-with-postcss-import). You can learn more about the new CSS features [here](http://cssnext.io/features/) and PostCSS [here](http://cssnext.io/postcss/).
 
 Sometimes Basscss/Tachyons don't allow customizations via CSS variables:
 
@@ -282,7 +284,9 @@ In that case, **copy the file** you want to customize, **change the values** (bu
 @import ...;
 ```
 
-## :sunglasses: Some downsides of functional CSS :sunglasses:
+Finally, I **don't** recommend writing a functional CSS library of your own **unless** you're willing to document most of the classes extensively. Similarly, if you're going to **extend** (not customize) Basscss/Tachyons by adding more small classes, document most of them.
+
+## :sunglasses: Some downsides of using functional CSS (finally, the main part!) :sunglasses:
 
 
 ## Author
