@@ -95,7 +95,7 @@ And these are the CSS classes that are built into Tachyons:
 
 ### Did you think: "This looks like a *terrible* idea"?
 
-I did too, until I actually started using them on my company's production code, and the *maintenability of our frontend 10x'ed*. So why is this not a bad idea? The answer is simple:
+I did too, until I actually started using them on my company's production code, and the *maintainability of our frontend 10x'ed*. So why is this not a bad idea? The answer is simple:
 
 - If you use functional CSS, **when you add something new to a page, you'll rarely write any new CSS.** You can build most of what you want to add by composing these small CSS classes.
 - This is a sharp contrast to using traditional "semantic CSS", where you'll *add new CSS classes* like `shopping-cart__item--selected` *every time* you add something new to a page.
@@ -197,7 +197,7 @@ Let's return to the Tachyons cat example:
 
 Suppose that somewhere else on your app, you'll need to have something similar to above, but for dogs instead of cats. You'll need to copy paste above code, and replace the photo, name, price, and description, and *keep all of the classes.* That sounds brittle and not very DRY.
 
-Instead, you should be using some sort of a **templating mechanism**. In Rails, you can use partials. In React, you can create a component:
+Instead, you should be using some sort of **HTML templates**. In Rails, you can use partials. In React, you can create a component:
 
 ```js
 const ItemCard = ({ name, price, image, description, alt }) => (
@@ -225,7 +225,7 @@ and you reuse the component instead of reusing HTML:
 <ItemCard name='Dog' price='$2,000' image='...' description='...' alt='...' />
 ```
 
-In other words, **templating/component system (for HTML markup) is what makes functional CSS great.**
+In other words, **template/component system (for HTML markup) is what makes functional CSS great.**
 
 ### I'm sold.
 
@@ -708,7 +708,7 @@ Webpack's CSS loader supports CSS modules ([documentation](https://github.com/we
 
 #### Side note: Alternatives
 
-I spent a good amount of time trying out Khan Academy's [aphrodite](https://github.com/Khan/aphrodite), an inline styles library. It looked great and worked well with server-side rendering, but as of verison 0.5.0, there were some issues ([#10](https://github.com/Khan/aphrodite/issues/10) and [#30](https://github.com/Khan/aphrodite/issues/30)) which prevented me from using it.
+I spent a good amount of time trying out Khan Academy's [aphrodite](https://github.com/Khan/aphrodite), an inline styles library. It looked great and worked well with server-side rendering, but as of version 0.5.0, there were some issues ([#10](https://github.com/Khan/aphrodite/issues/10) and [#30](https://github.com/Khan/aphrodite/issues/30)) which prevented me from using it.
 
 #### Using CSS Modules with `cn`
 
