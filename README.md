@@ -949,6 +949,12 @@ Functional CSS is powerful, but with React, you can make it even more so. Try us
 
 Opening issues and pull requests are highly appreciated!
 
+### Tweet
+
+Like / Retweet appreciated!
+
+[![screenshot 2016-08-10 at 4 05 15 pm](https://cloud.githubusercontent.com/assets/992008/17574224/4b4f6342-5f14-11e6-9717-fd75c801f6ce.png)](https://twitter.com/chibicode/status/763504990736388096)
+
 ### Author
 
 **Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
