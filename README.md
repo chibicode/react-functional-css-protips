@@ -434,14 +434,14 @@ const virtualToFunctional = {
   // More virtual class -> functional class mapping here
 }
 
-function cn (classNames) {
+function convertVirtualClassnames (classNames) {
   return classNames.split(' ').map((className) => (
     // If mapping exists, use that. Else leave it as is
     virtualToFunctional[className] || className
   )).join(' ')
 }
 
-export default cn
+export default convertVirtualClassnames
 ```
 
 You can implement a version which supports **recursive** converting. Also instead of replacing virtual classes with functional classes, it might be useful to **keep** the virtual classes and **add** functional classes, for easier debugging from your browser. This is up to you.
@@ -454,15 +454,17 @@ const virtualToFunctional = {
   '-virtual-class-b': '... -virtual-class-a'
 }
 
-function cn (classNames) {
+function convertVirtualClassnames (classNames) {
   return classNames.split(' ').map((className) => (
     // Recursively convert.
     // Also return both functional and virtual classes
     virtualToFunctional[className]
-    ? `${cn(virtualToFunctional[className])} ${className}`
+    ? `${convertVirtualClassnames(virtualToFunctional[className])} ${className}`
     : className
   )).join(' ')
 }
+
+export default convertVirtualClassnames
 ```
 
 By making hyphen (`-`)  the first character and leaving virtual classes when converting them on `cn`, you can easily tell which classes are virtual and which classes are functional from your Chrome/etc DevTools.
@@ -493,7 +495,6 @@ Let's say that you write virtual classes called `-row-with-gutter-1` and `-col-w
 const virtualToFunctional = {
   '-row-with-gutter-1': 'clearfix mxn1'
   '-col-1-2-3-4': 'sm-col sm-col-6 md-col md-col-4 lg-col lg-col-3'
-
 }
 ```
 
@@ -649,7 +650,7 @@ CSS modules solve one problem: **prevents global CSS styles from colliding.** Yo
 
 ```css
 /* header.css */
-.header {
+.headerImage {
   background-image: url(...);
   ...
 }
@@ -663,7 +664,7 @@ import styles from './header.css'
 
 const Header = () => {
   ...
-  <div className={styles.header}>
+  <div className={styles.headerImage}>
     ...
   </div>
   ...
@@ -674,7 +675,7 @@ And it generates a unique class name and a corresponding style declaration when 
 
 ```html
 <style>
-  ._styles__header_309571057 {
+  ._styles__headerImage_309571057 {
     background-image: url(...);
     ...
   }
@@ -682,7 +683,7 @@ And it generates a unique class name and a corresponding style declaration when 
 
 ...
 
-<div class='styles__header_309571057'>
+<div class='styles__headerImage_309571057'>
   ...
 </div>
 ```
@@ -701,13 +702,13 @@ Here's how CSS modules are often used in React:
 
 ```css
 /* header.css */
-.header { ... }
+.headerImage { ... }
 ```
 
 ```js
 import styles from './header.css'
 ...
-<div className={styles.header}>
+<div className={styles.headerImage}>
 ```
 
 This syntax doesn't seem to play nice with virtual CSS function `cn`, where you'd write:
@@ -718,11 +719,215 @@ This syntax doesn't seem to play nice with virtual CSS function `cn`, where you'
 
 You can use string interpolation, but we can do better. Here's an idea: **you can make `cn` function to support CSS modules.**
 
+#### New API for `cn`:
+
+Here's the new API for `cn`. Instead of just importing it:
+
+```js
+// Old way
+import cn from '...'
+```
+
+You first import `makeCn`, and then invoke it to get `cn`:
+
+```js
+// New way
+import makeCn from '...'
+const cn = makeCn(...)
+```
+
+The argument for `makeCn` is an object, where **the values are CSS module object and the keys are "prefixes" to use that CSS module object**.
+
+For instance, let's say you have a CSS module like this:
+
+```css
+/* header.css */
+.headerImage { ... }
+```
+
+Then you'd write `makeCn` like this:
+
+```js
+import styles from './header.css'
+import makeCn from '...'
+
+// Assign "_" as a prefix to use styles from header.css
+const cn = makeCn({ _: styles })
+```
+
+Then, every class that has an underscore as a prefix will use the equivalent style (without the underscore) from `header.css`:
+
+```js
+{/* By using _headerImage inside cn,
+    it applies CSS rules from .headerImage {} */}
+<div className={cn('_headerImage -some-virtual-class some-functional-class')} />
+```
+
+You can use multiple CSS modules too:
+
+```css
+/* header.css */
+.headerImage { ... }
+
+/* footer.css */
+.footerImage { ... }
+```
+
+```js
+import headerStyles from './header.css'
+import footerStyles from './footer.css'
+import makeCn from '...'
+
+// Assign "h_" as prefixes for styles from header.css,
+// and "f_" as prefixes for styles from footer.css
+const cn = makeCn({
+  h_: headerStyles,
+  f_: footerStyles
+})
+
+...
+
+{/* Header Component */}
+<div className={cn('h_headerImage ...')} />
+
+{/* Footer Component */}
+<div className={cn('f_headerImage ...')} />
+```
+
+So you can use `cn` for both virtual classes and CSS modules. Awesome! What's the implementation like for `makeCn`, then?
+
+#### Implementing `makeCn`
+
+Again, here's the API we'd like to implement:
+
+```js
+const cn = makeCn({
+  h_: headerStyles,
+  f_: footerStyles
+})
+
+cn('h_headerImage other-classes')
+
+// is equivalent to...
+
+cn(`${headerStyles['headerImage']} other-classes`)
+```
+
+First, write a function called `convertCssModuleClassnames`, which takes `prefixToCssmodules`, which is like:
+
+```js
+{
+  h_: headerStyles,
+  f_: footerStyles
+}
+```
+
+and return a function which takes the argument for `cn` (which is a string containing class names) and returns new class names.
+
+```js
+const convertCssModuleClassnames = (prefixToCssmodules) => (classnames) => (
+  // Only proceed if prefixToCssmodules is not empty.
+  // Otherwise, just return classnames.
+  prefixToCssmodules
+  ? // For each class name...
+  classnames.split(' ').map((classname) => {
+    let convertedClassname
+
+    // For each prefixes (like "h_" or "f_")...
+    Object.keys(prefixToCssmodules).forEach((prefix) => {
+      // Test to see if prefix matches the class name
+      const regexp = new RegExp(`^${prefix}`)
+      if (regexp.test(classname)) {
+        // If it matches, get the CSS module object
+        // by calling prefixToCssmodules[prefix],
+        // then look up the classname (without the prefix)
+        convertedClassname = prefixToCssmodules[prefix][classname.replace(regexp, '')]
+      }
+    })
+
+    // If successfully converted, return both the CSS module version
+    // and the pre-conversion version (for in-browser debugging).
+    return `${convertedClassname} ${classname}` || classname
+  }).join(' ')
+  : classnames
+)
+```
+
+Then, you can combine it with `convertVirtualClassnames` before you export:
+
+```js
+const makeCn = (prefixToCssmodules) => (classnames) => (
+  // First run convertVirtualClassnames, then pass the result to convertCssModuleClassnames
+  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classnames))
+)
+
+export default makeCn
+```
+
+#### ProTip 2 Conclusion
+
+- When functional classes don't cut it, write CSS using CSS modules.
+- CSS modules solve the global namespace collision problem.
+- You can rewrite `cn` to play nice with CSS modules.
+
+### :v: ProTip 3: Make `cn` more powerful by integrating `classnames` library :v:
+
+There's one more thing: Jed Watson wrote a popular library called [`classnames`](https://github.com/JedWatson/classnames), a utility for joining class names together. Here's an example:
+
+```js
+// Install using `npm install`
+import classNames from 'classnames'
+
+classNames('foo', 'bar'); // => 'foo bar'
+classNames('foo', { bar: true }); // => 'foo bar'
+classNames({ 'foo-bar': true }); // => 'foo-bar'
+classNames({ 'foo-bar': false }); // => ''
+classNames({ foo: true }, { bar: true }); // => 'foo bar'
+classNames({ foo: true, bar: true }); // => 'foo bar'
+classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
+```
+
+This is very powerful when combined with functional CSS. **If you're using `cn` to use virtual classes and CSS modules, I suggest integrating `classnames` to it**.
+
+#### Easy Integration
+
+Just modify `makeCn` like this:
+
+```js
+import classNames from 'classnames'
+
+const makeCn = (prefixToCssmodules) => (...args) => (
+  // First run classNames, then run convertVirtualClassnames,
+  // then pass the result to convertCssModuleClassnames
+  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classNames(...args)))
+)
+```
+
+Then you can do something like this:
+
+```js
+import style from './header.css'
+import makeCn from '...'
+const cn = makeCn({_: style})
+
+...
+
+{/* cn now acts like classNames,
+    but it now supports virtual classes (-dark-header-text)
+    and CSS module classes (_beta-header-image) */}
+<div className={cn('bold p2', {
+  '-dark-header-text': isDark,
+  '_beta-header-image': isBeta
+})}>
+```
+
+This is powerful - you get the best of everything.
+
 ---
 
 ## :sunglasses: Epilogue :sunglasses:
 
-Coming soon...
+Functional CSS is powerful, but with React, you can make it even more so. Try using virtual classes and CSS modules, encapsulated under the simple `cn` function. Your mileage may vary, but I'm enjoying it so far.
 
 ### Author
 
