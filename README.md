@@ -1,4 +1,4 @@
-# ProTips for Writing Functional CSS in React.js
+# Functional CSS - The Good, The Bad, and Some Protips for React.js Users
 
 ![](https://cloud.githubusercontent.com/assets/992008/17532105/d52e78fa-5e33-11e6-94d2-4b77b801c671.png)
 
@@ -296,7 +296,7 @@ Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, a
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
-(1) They're in uppercase, (2) uses San Francisco as `font-family`, and (3) with some `letter-spacing`. In functional CSS, they'd look like this:
+(1) They're in uppercase, (2) use San Francisco as `font-family`, and (3) are with some `letter-spacing`. In functional CSS, they'd look like this:
 
 ```html
 <span class='uppercase font-san-francisco letter-spacing-1 ...'>...</span>
@@ -315,18 +315,17 @@ const Tab = (...) => <a className='gray uppercase font-san-francisco letter-spac
   ...
 </a>
 
-// Checkbox.js - black, large font
-const Checkbox = (...) => <label ...>
-  <input ... />
-  <span class='black font-h1 uppercase font-san-francisco letter-spacing-1'>...</span>
-</label>
+// Heading.js - black, large font
+const Heading = (...) => <h2 className='black font-h1 uppercase font-san-francisco letter-spacing-1 ...'>
+  ...
+</h2>
 ```
 
 Now, suppose that a designer comes in and says that (1) `font-family` should now be Futura, (2) there should be no more uppercase letters and (3) `letter-spacing`.
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548450/d222ac40-5ea0-11e6-872e-fac447088760.png)
 
-This will require you to do replace `uppercase font-san-francisco letter-spacing-1` with `font-futura` in each of Button.js, Tab.js, and Checkbox.js.
+This will require you to do replace `uppercase font-san-francisco letter-spacing-1` with `font-futura` in each of Button.js, Tab.js, and Heading.js.
 
 ### The "Find-and-Replace" Problem
 
@@ -360,7 +359,7 @@ If find-and-replace fails, your page might end up in a state like this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17549227/20113d2e-5ea4-11e6-851a-2522f01bf80b.png)
 
-Fixing this can be painful, because now you'll need to modify different classes on each file. On Button.js, you need to change `font-san-francisco` to `font-futura`. On Tab.js, you need to remove `uppercase`. On Checkbox.js, you need to remove `letter-spacing-1`.
+Fixing this can be painful, because now you'll need to modify different classes on each file. On Button.js, you need to change `font-san-francisco` to `font-futura`. On Tab.js, you need to remove `uppercase`. On Heading.js, you need to remove `letter-spacing-1`.
 
 That's not too bad with if you can visually examine each component and figure out what's wrong. But there's no easy way to point that out by just looking at the code, and the complexity can explode quickly.
 
@@ -376,9 +375,263 @@ But again, how should we write regular CSS? Should we just use [BEM again](https
 
 ---
 
-## :sunglasses: Act III: My Recommendation on Writing Functional CSS in React :sunglasses:
+## :sunglasses: Act III: Two ProTips on Writing Functional CSS in React :sunglasses:
 
-Coming soon...
+I spent some time thinking about how these problems can be solved. Here are my initial thoughts - they are pretty experimental.
+
+Also note: **these protips are React.js specific.**
+
+### ProTip 1: Use "virtual classes" and document them
+
+A **virtual class** is a class which gets converted into a set of functional CSS classes. The name "virtual" is inspired from React's virtual DOM.
+
+Let's recall our previous example, where some texts (1) are in uppercase, (2) use San Francisco as font-family, and (3) have some letter-spacing.
+
+![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
+
+Instead of writing `uppercase font-san-francisco letter-spacing-1`:
+
+```js
+const Button = (...) => <button className='blue uppercase font-san-francisco letter-spacing-1 ...'>
+  ...
+</button>
+
+const Tab = (...) => <a className='gray uppercase font-san-francisco letter-spacing-1 ...'>
+  ...
+</a>
+
+const Heading = (...) => <h2 className='black font-h1 uppercase font-san-francisco letter-spacing-1 ...'>
+  ...
+</h2>
+```
+
+you'd write a virtual class called `-text-style-emphasis`. A hyphen is added in the beginning to indicate that it's a virtual class. Then, **use `cn`** (short for "class name") helper function on `className`, which converts `-text-style-emphasis` to `uppercase font-san-francisco letter-spacing-1`.
+
+```js
+import cn from '...'
+
+const Button = (...) => <button className={cn('blue -text-style-emphasis ...')}>
+  ...
+</button>
+
+const Tab = (...) => <a className={cn('gray -text-style-emphasis ...')}>
+  ...
+</a>
+
+const Heading = (...) => <h2 className={cn('black font-h1 -text-style-emphasis ...')}>
+  ...
+</h2>
+```
+
+#### The `cn` function and virtual classes
+
+The `cn` function, which you can implement quickly, will convert those virtual classes to functional classes.
+
+```js
+// cn.js
+const virtualToFunctional = {
+  '-text-style-emphasis': 'uppercase font-san-francisco letter-spacing-1'
+  // More virtual class -> functional class mapping here
+}
+
+function cn (classNames) {
+  return classNames.split(' ').map((className) => (
+    // If mapping exists, use that. Else leave it as is
+    virtualToFunctional[className] || className
+  )).join(' ')
+}
+
+export default cn
+```
+
+You can implement a version which supports **recursive** converting. Also instead of replacing virtual classes with functional classes, it might be useful to **keep** the virtual classes and **add** functional classes, for easier debugging from your browser. This is up to you.
+
+```js
+// cn.js
+const virtualToFunctional = {
+  '-virtual-class-a': '...',
+  // One virtual class can reference another virtual class
+  '-virtual-class-b': '... -virtual-class-a'
+}
+
+function cn (classNames) {
+  return classNames.split(' ').map((className) => (
+    // Recursively convert.
+    // Also return both functional and virtual classes
+    virtualToFunctional[className]
+    ? `${cn(virtualToFunctional[className])} ${className}`
+    : className
+  )).join(' ')
+}
+```
+
+By making hyphen (`-`)  the first character and leaving virtual classes when converting them on `cn`, you can easily tell which classes are virtual and which classes are functional from your Chrome/etc DevTools.
+
+#### What problem do virtual classes solve?
+
+**Virtual classes solve the "Find-and-Replace" problem** which I illustrated earlier.
+
+![](https://cloud.githubusercontent.com/assets/992008/17548450/d222ac40-5ea0-11e6-872e-fac447088760.png)
+
+Instead of finding and replacing a set of utility classes, you can just modify the virtual to functional mapping, or change virtual classes on HTML.
+
+If virtual classes are well documented (which I'll cover next), they can force devs to write consistent styles and prevent a mess like this:
+
+![](https://cloud.githubusercontent.com/assets/992008/17549227/20113d2e-5ea4-11e6-851a-2522f01bf80b.png)
+
+Virtual classes also make HTML slightly easier to read without adding any new CSS code.
+
+One downside of virtual classes is that you'd have to call `cn` every time for `className`, but this is actually not too bad - I'll explain why on the next ProTip.
+
+#### Write a living style guide for virtual classes
+
+**Try to write a living style guide for every virtual class** - if you can't do that, then don't write it. Documentation is crucial, because that's how those virtual classes are going to be reused.
+
+Let's say that you write virtual classes called `-row-with-gutter-1` and `-col-with-gutter-1`, which can be used for columns with gutters. And they get converted to Basscss classes. These might not be the best use of virtual classes, but let's ignore that for now.
+
+```js
+const virtualToFunctional = {
+  '-row-with-gutter-1': 'clearfix mxn1'
+  '-col-1-2-3-4': 'sm-col sm-col-6 md-col md-col-4 lg-col lg-col-3'
+
+}
+```
+
+Then, you'd want to generate a living styleguide like this. I'll show you the code next.
+
+![screenshot 2016-08-10 at 11 49 15 am](https://cloud.githubusercontent.com/assets/992008/17566510/8a04a544-5ef0-11e6-946e-e6056e0afda4.png)
+
+#### The Styleguide component: usage
+
+The above style guide is generated from this `Styleguide` component:
+
+```js
+<Styleguide
+  title='Grid with Gutters'
+  classnames={['-row-with-gutter-1', '-col-with-gutter-1']}
+  SampleCode={({ cnProxy, Placeholder }) => (
+    <div className={cnProxy('-row-with-gutter-1')}>
+      <div className={cnProxy('-col-with-gutter-1 col col-6')}>
+        <Placeholder>Column with Gutter 1</Placeholder>
+      </div>
+      <div className={cnProxy('-col-with-gutter-1 col col-6')}>
+        <Placeholder>Column with Gutter 1</Placeholder>
+      </div>
+    </div>
+  )} />
+```
+
+`Styleguide` takes three parameters:
+
+- `title` is the section title.
+- `classnames` is the list of virtual classes.
+- `SampleCode` is a React component definition, which takes `cnProxy` and `Placeholder` as props, and renders code that illustrates a use of these virtual classes. Use `cnProxy` instead of `cn`, and `Placeholder` for placeholder code.
+
+#### The Styleguide component: implementation (first half)
+
+Here's the first half of the code for `Styleguide`:
+
+```js
+import cn from '...'
+
+const Styleguide = ({ title, classnames, SampleCode }) =>
+  <div>
+    <h2>{title}</h2>
+    <div className='mb2'>
+      <ul>
+        {/* For each virtual class name in classnames,
+            show what functional classes they're converted to */}
+        {
+          classnames.map((classname) => (
+            <li key={classname}>
+              <code>{classname}</code> → <code>{cn(classname)}</code>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div className='border mb2'>
+      {/* Render SampleCode by using cn for cnProxy and
+          a simple component to display placeholders */}
+      <SampleCode
+        cnProxy={cn}
+        Placeholder={
+          ({ children }) =>
+            <div style={{ background: '#eee', borderColor: '#ccc' }} className='p2 border'>
+              {children}
+            </div>
+        } />
+    </div>
+    ...
+  </div>
+```
+
+The above code renders this:
+
+![screenshot 2016-08-10 at 12 04 33 pm](https://cloud.githubusercontent.com/assets/992008/17567069/b2a21ed0-5ef2-11e6-8a23-a618beb92ece.png)
+
+#### The Styleguide component: implementation (second half)
+
+The second half of `Styleguide` code looks like this:
+
+```js
+import ...
+import { renderToStaticMarkup } from 'react-dom/server'
+// You need to install this using `npm install`
+import { html } from 'js-beautify'
+
+const Styleguide = ({ title, classnames, SampleCode }) =>
+  <div>
+    ...
+    <pre>
+      {(() => {
+        // First, create a SampleCode component instance.
+        // - Instead of using `cn` for `cnProxy`,
+        //   make a simple function which appends __cn__ to class names.
+        // - Placeholder component just returns an empty div.
+        const sampleCode =
+          <SampleCode
+            cnProxy={x => `__cn__${x}`}
+            Placeholder={() => <div />} />
+
+        // Render the component.
+        const renderedHtml = renderToStaticMarkup(sampleCode)
+
+        // Indent the rendered result.
+        const renderedHtmlIndented = html(renderedHtml, { indent_size: 2 })
+
+        // Then, replace
+        //   class="__cn__..."
+        // in the rendered string with:
+        //   className={cn('...')}
+        // and replace
+        //   <div></div>
+        // in the rendered string with:
+        //   ...
+        const renderedHtmlCleaned =
+          renderedHtmlIndented
+            .replace(/class="__cn__([^"]+)"/g, 'className={cn(\'$1\')}')
+            .replace(/<div><\/div>/g, '...')
+
+        // Return the rendered string.
+        return renderedHtmlCleaned
+      })()}
+    </pre>
+  </div>
+```
+
+The above code renders this:
+
+![screenshot 2016-08-10 at 12 26 57 pm](https://cloud.githubusercontent.com/assets/992008/17567814/c7eeb9d0-5ef5-11e6-98d2-2a770c53f0d4.png)
+
+Note: if you want to enable syntax highlighting, you can try using [Prism](https://github.com/tomchentw/react-prism), which supports JSX well.
+
+#### ProTip 1 Conclusion
+
+- Use virtual classes, which gets converted to functional class names on render.
+- Write a mapping from virtual classes to functional classes, and a `cn` helper which does the translation. Then call `cn` for `className`.
+- They solve the "Find-and-Replace" problem which can happen often when writing functional CSS.
+- Create a component for generating a style guide for virtual classes.
 
 ---
 
@@ -388,4 +641,6 @@ Coming soon...
 
 ### Author
 
-**Shu Uesugi** ([Twitter: @chibicode](http://twitter.com/chibicode) / [shu@chibicode.com](mailto:shu@chibicode.com))
+**Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
+
+![](https://avatars1.githubusercontent.com/u/992008?v=3&s=150)
