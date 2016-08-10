@@ -635,7 +635,11 @@ Note: if you want to enable syntax highlighting, you can try using [Prism](https
 
 ### :v: ProTip 2: Use CSS Modules and call them from `cn` :v:
 
-You'd still have to write CSS from time to time, and React offers many ways to write them. After trying all of them, **I decided that [CSS modules](https://github.com/css-modules/css-modules) is the way to go**.
+You'd still have to write CSS if it doesn't make sense to use functional styles. Example I wrote earlier:
+
+> If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you probably **don't** want to make a new class called `height-178` and `bottom-12`.
+
+React offers many ways to write CSS. After trying all of them, **I decided that [CSS modules](https://github.com/css-modules/css-modules) is the way to go**.
 
 #### What are CSS modules?
 
@@ -713,10 +717,6 @@ This syntax doesn't seem to play nice with virtual CSS function `cn`, where you'
 ```
 
 You can use string interpolation, but we can do better. Here's an idea: **you can make `cn` function to support CSS modules.**
-
-**Remember:** you'd only want to write new CSS if it doesn't make sense to use functional styles (e.g. If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px).
-
-
 
 ---
 
