@@ -17,6 +17,8 @@ I've originally written this to help my coworkers learn functional CSS, but mayb
 
 - If you don't know React, you should learn it! I've written a tutorial called [React.js Introduction For People Who Know Just Enough jQuery To Get By](http://reactfordesigners.com/labs/reactjs-introduction-for-people-who-know-just-enough-jquery-to-get-by/), which has received [0.3 million pageviews](https://cloud.githubusercontent.com/assets/992008/17539561/f2842d0c-5e63-11e6-9617-0068cbb5de28.png) in 1 year.
 
+---
+
 ## :sunglasses: Act I: What is functional CSS and why would I want to use it? :sunglasses:
 
 This example is [taken](http://tachyons.io/components/collections/product-card/index.html) from [Tachyons](http://tachyons.io/), one of the popular functional CSS toolkits. Consider this <s>cat</s> card:
@@ -286,6 +288,8 @@ In that case, **copy the file** you want to customize, **change the values** (bu
 
 Finally, I **don't** recommend writing a functional CSS library of your own **unless** you're willing to document most of the classes extensively. Similarly, if you're going to **extend** (not customize) Basscss/Tachyons by adding more small classes, document most of them.
 
+---
+
 ## :sunglasses: Act II: Some downsides of using functional CSS :sunglasses:
 
 Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, and checkboxes all have text styles that look like this:
@@ -370,10 +374,18 @@ If some component *must* have a height of 178px and be absolutely positioned fro
 
 But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? What about a new technique called [CSS Modules](https://github.com/css-modules/css-modules)? I think part of a problem is that React offers so many different ways to write regular CSS, and you probably don't want all those different methods mixed on your codebase.
 
+---
+
 ## :sunglasses: Act III: My Recommendation on Writing Functional CSS in React :sunglasses:
 
 Coming soon...
 
-## Author
+---
+
+## :sunglasses: Epilogue :sunglasses:
+
+Coming soon...
+
+### Author
 
 **Shu Uesugi** ([Twitter: @chibicode](http://twitter.com/chibicode) / [shu@chibicode.com](mailto:shu@chibicode.com))
