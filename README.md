@@ -2,6 +2,19 @@
 
 ![](https://cloud.githubusercontent.com/assets/992008/17532105/d52e78fa-5e33-11e6-94d2-4b77b801c671.png)
 
+### Table of Contents
+
+This repo is a Three-Act essay.
+
+- [Prologue: Who this document is for](#sunglasses-prologue-who-this-document-is-for-sunglasses)
+- [Act I: What is functional CSS and why would I want to use it?](#sunglasses-act-i-what-is-functional-css-and-why-would-i-want-to-use-it-sunglasses)
+- [Act II: Some downsides of using functional CSS](#sunglasses-act-ii-some-downsides-of-using-functional-css-sunglasses)
+- [Act III: Some ProTips on Writing Functional CSS in React](#sunglasses-act-iii-some-protips-on-writing-functional-css-in-react-sunglasses)
+  - [ProTip 1: Use "virtual classes" and document them](#v-protip-1-use-virtual-classes-and-document-them-v)
+  - [ProTip 2: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
+  - [ProTip 3: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
+- [Epilogue](#sunglasses-epilogue-sunglasses)
+
 ## :sunglasses: Prologue: Who this document is for :sunglasses:
 
 I've originally written this to help my coworkers learn functional CSS, but maybe you'll find it helpful too.
@@ -864,6 +877,10 @@ const makeCn = (prefixToCssmodules) => (classnames) => (
 
 export default makeCn
 ```
+
+#### Alternatives
+
+There's an excellent library called [`react-css-modules`](https://github.com/gajus/react-css-modules/) which solves the same problem. I tried using it, but as of version 3.7.10, it doesn't work well with loops and components that use `children` prop. Also, I wasn't a fan of extending React's API (adding `styleNames` attribute) and decorating every single component just for this purpose. I think `makeCn` is a much lighter-weight solution, but you should still check it out.
 
 #### ProTip 2 Conclusion
 
