@@ -375,13 +375,13 @@ But again, how should we write regular CSS? Should we just use [BEM again](https
 
 ---
 
-## :sunglasses: Act III: Two ProTips on Writing Functional CSS in React :sunglasses:
+## :sunglasses: Act III: Some ProTips on Writing Functional CSS in React :sunglasses:
 
 I spent some time thinking about how these problems can be solved. Here are my initial thoughts - they are pretty experimental.
 
 Also note: **these protips are React.js specific.**
 
-### ProTip 1: Use "virtual classes" and document them
+### :v: ProTip 1: Use "virtual classes" and document them :v:
 
 A **virtual class** is a class which gets converted into a set of functional CSS classes. The name "virtual" is inspired from React's virtual DOM.
 
@@ -632,6 +632,91 @@ Note: if you want to enable syntax highlighting, you can try using [Prism](https
 - Write a mapping from virtual classes to functional classes, and a `cn` helper which does the translation. Then call `cn` for `className`.
 - They solve the "Find-and-Replace" problem which can happen often when writing functional CSS.
 - Create a component for generating a style guide for virtual classes.
+
+### :v: ProTip 2: Use CSS Modules and call them from `cn` :v:
+
+You'd still have to write CSS from time to time, and React offers many ways to write them. After trying all of them, **I decided that [CSS modules](https://github.com/css-modules/css-modules) is the way to go**.
+
+#### What are CSS modules?
+
+If you don't know what CSS modules are, here's an excellent introductory post: [What are CSS Modules and why do we need them?](https://css-tricks.com/css-modules-part-1-need/)
+
+CSS modules solve one problem: **prevents global CSS styles from colliding.** You can write CSS like this:
+
+```css
+/* header.css */
+.header {
+  background-image: url(...);
+  ...
+}
+```
+
+Then, **load that CSS file in JS into a variable on a React component definition**
+
+```js
+// Header.js
+import styles from './header.css'
+
+const Header = () => {
+  ...
+  <div className={styles.header}>
+    ...
+  </div>
+  ...
+}
+```
+
+And it generates a unique class name and a corresponding style declaration when React is rendered:
+
+```html
+<style>
+  ._styles__header_309571057 {
+    background-image: url(...);
+    ...
+  }
+</style>
+
+...
+
+<div class='styles__header_309571057'>
+  ...
+</div>
+```
+
+By using CSS classes, you can name CSS classes whatever you want and don't need to worry about them colliding. Also, because JS files load CSS files, if those JS files are not required, then those CSS won't be loaded, cutting down file size. This is much better than plain-old BEM in my opinion.
+
+Webpack's CSS loader supports CSS modules ([documentation](https://github.com/webpack/css-loader)). CSS modules also work on server-side rendering: use `css-loader/locals` instead of `style-loader!css-loader` on server-side webpack config, and [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin) on client-side webpack config for production.
+
+#### Side note: Alternatives
+
+I spent a good amount of time trying out Khan Academy's [aphrodite](https://github.com/Khan/aphrodite), an inline styles library. It looked great and worked well with server-side rendering, but as of verison 0.5.0, there were some issues ([#10](https://github.com/Khan/aphrodite/issues/10) and [#30](https://github.com/Khan/aphrodite/issues/30)) which prevented me from using it.
+
+#### Using CSS Modules with `cn`
+
+Here's how CSS modules are often used in React:
+
+```css
+/* header.css */
+.header { ... }
+```
+
+```js
+import styles from './header.css'
+...
+<div className={styles.header}>
+```
+
+This syntax doesn't seem to play nice with virtual CSS function `cn`, where you'd write:
+
+```js
+<div className={cn('...')} >
+```
+
+You can use string interpolation, but we can do better. Here's an idea: **you can make `cn` function to support CSS modules.**
+
+**Remember:** you'd only want to write new CSS if it doesn't make sense to use functional styles (e.g. If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px).
+
+
 
 ---
 
