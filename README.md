@@ -405,29 +405,53 @@ But again, you might forget to add this fake class, and then you'd be screwed.
 
 ### Styles might diverge, and fixing them can be challenging
 
-If find-and-replace fails, your page might end up in a state like this:
+If Find-and-Replace fails, your page might end up in a state like this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17549227/20113d2e-5ea4-11e6-851a-2522f01bf80b.png)
 
 Fixing this can be painful, because now you'll need to modify different classes on each file. On Button.js, you need to change `font-san-francisco` to `font-futura`. On Tab.js, you need to remove `uppercase`. On Heading.js, you need to remove `letter-spacing-1`.
 
-That's not too bad with if you can visually examine each component and figure out what's wrong. But there's no easy way to point that out by just looking at the code, and the complexity can explode quickly.
+That's not too bad with if you can visually examine each component and figure out what's wrong. But there's no easy way to point that out by just looking at the code. And remember: we're dealing with just 3 classes across 3 files.
 
-Moreover, with functional CSS, **you'll likely end up in a state like above when you're writing new components.** If ideas like "semi-important texts (1) are in uppercase, (2) use San Francisco as font-family, and (3) have some `letter-spacing`." are *not represented/documented anywhere*, and *a dev has to make a decision without a designer* (which happens **often** in practice), you'll end up in a state like above. And once you do, it's hard to get out.
+Moreover, with functional CSS, **you'll likely end up in a state like above when you're writing new components.**
 
-Using components/templates for markup will help, but sometimes similar styles are used across many components/templates.
+If ideas like "semi-important texts (1) are in uppercase, (2) use San Francisco as font-family, and (3) have some `letter-spacing`." are not represented/documented anywhere, and **a dev has to make a decision** without a designer (which happens **often** in practice), you'll end up in a state like earlier.
+
+Using components/templates to reuse markup will help, but you can't componentize everything. Sometimes different components need to use similar styles.
 
 ### You'd still have to write CSS from time to time
 
-If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you probably **don't** want to make a new class called `height-178` and `bottom-12`. They probably aren't reusable, and probably won't be documented, which are against the philosophies of functional CSS. You should just use write regular CSS.
+If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you **don't** want to make a new class called `height-178` and `bottom-12`. They aren't reusable and probably won't be documented. This goes against the philosophies of functional CSS.
 
-But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? One of the downsides of using inline styles is that the support for pseudo selectors (e.g. `:hover`) and `@media` queries is poor. Libraries like [Radium](https://github.com/FormidableLabs/radium) are designed to solve this, but Radium had [some critical bugs](https://github.com/FormidableLabs/radium/issues/367) that don't seem to have a good solution.
+In this case, you should just use write regular CSS which **augument** functional classes:
+
+```js
+// some-box is NOT a functional class - it'll look like this:
+// .some-box {
+//   height: 178px;
+//   bottom: 12px;
+// }
+<div class='p2 absolute some-box'>...</div>
+```
+
+But again, how should we write regular CSS? Should we just use [BEM](https://css-tricks.com/bem-101/) again? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)?
+
+One of the downsides of using inline styles is that the support for pseudo selectors (e.g. `:hover`) and `@media` queries is poor. Libraries like [Radium](https://github.com/FormidableLabs/radium) are designed to solve this, but Radium had [some critical bugs](https://github.com/FormidableLabs/radium/issues/367) that don't seem to have a good solution.
 
 Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
 
 ![screenshot 2016-08-10 at 8 35 20 pm](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
 
 I think part of a problem is that React offers many different ways to write regular CSS. You should probably pick one and run with it. But which one should you pick?
+
+#### Coming Up Next...
+
+In summary, the main problems I encountered with functional CSS are:
+
+- The "Find-and-Replace" problem, and
+- Still having to write regular CSS (which isn't too bad).
+
+In the next act, I'll present my take on solving these problems.
 
 ---
 
