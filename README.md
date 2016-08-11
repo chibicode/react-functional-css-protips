@@ -1011,15 +1011,13 @@ This is powerful - you get the best of everything.
 
 ## :sunglasses: Epilogue :sunglasses:
 
-Functional CSS is powerful, but with React, you can make it even more so. Try using virtual classes and CSS modules, encapsulated under the simple `cn` function. Your mileage may vary, but I'm enjoying it so far.
+Functional CSS is powerful, but with React, you can make it even more so. Try using virtual classes and CSS modules, encapsulated under the simple `cn` function. Your mileage may vary, but I'm enjoying the setup so far.
 
-Opening issues and pull requests are highly appreciated!
+Issues and pull requests are highly appreciated!
 
 ### Author
 
 **Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
-
-Like / Retweet appreciated!
 
 [![screenshot 2016-08-10 at 4 06 54 pm](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
 ](https://twitter.com/chibicode/status/763504990736388096)
