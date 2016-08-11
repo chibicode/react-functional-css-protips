@@ -159,9 +159,17 @@ By the way, the code above is actually from an excellent article **[CSS and Scal
 >
 > ... **The real way to scale css, is to stop writing css.** Abstract out the things you use most and move to a multi-class pattern where you compose visual patterns in your html. You might be amazed at how quickly your team starts to move.
 
-I strongly encourage you to [read all of Adam's words](http://mrmrs.io/writing/2016/03/24/scalable-css/).
+I strongly encourage you to [read all of Adam's words](http://mrmrs.io/writing/2016/03/24/scalable-css/). But I know you probably won't. Fine. I'll copy-paste some more:
 
-### Okay, so you'll write less CSS, but isn't writing HTML harder now?
+> There are a number of suggested 'best practices' around how sass/less/stylus etc. will help you build maintainable css. How mixins can make your code more DRY. How extends will keep your markup clean and pretty to look at. **How BEM will make your code so perfect you want to cry.**
+
+> **But what is reality?** What actually gets shipped to production? What do all of these tips and tricks do to our production css? How does it affect the whole team? More important, how are your end users affected?
+
+> **When it comes to designing and shipping products I like to think about reality.** Which can be challenging sometimes... But, if you don't accurately assess where you currently are and what your reality is, it can be pretty tough to figure out what your problems are.
+
+Ok, I'm satisfied. Let's move on.
+
+### So you'll write less CSS, but isn't writing HTML harder now?
 
 When you use these small classes, it'll be harder to write HTML code **IF** you don't know which classes to use. But here's the key part: popular functional CSS toolkits like [Basscss](http://basscss.com/) and [Tachyons](http://tachyons.io/) are **extremely well documented**. Just take a look at their documentation:
 
