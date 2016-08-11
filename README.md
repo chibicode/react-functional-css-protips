@@ -999,21 +999,21 @@ There's an excellent library called [`react-css-modules`](https://github.com/gaj
 - CSS modules solve the global namespace collision problem.
 - You can rewrite `cn` to play nice with CSS modules.
 
-### :v: ProTip 3: Make `cn` more powerful by integrating the `classnames` package :v:
+### :v: ProTip 3: Make `cn` more powerful by integrating the [`classnames`](https://github.com/JedWatson/classnames) package :v:
 
 There's one more thing: Jed Watson wrote a popular library called [`classnames`](https://github.com/JedWatson/classnames), a utility for joining class names together. Here's an example:
 
 ```js
 // Install using `npm install`
-import classNames from 'classnames'
+import classnames from 'classnames'
 
-classNames('foo', 'bar'); // => 'foo bar'
-classNames('foo', { bar: true }); // => 'foo bar'
-classNames({ 'foo-bar': true }); // => 'foo-bar'
-classNames({ 'foo-bar': false }); // => ''
-classNames({ foo: true }, { bar: true }); // => 'foo bar'
-classNames({ foo: true, bar: true }); // => 'foo bar'
-classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
+classnames('foo', 'bar'); // => 'foo bar'
+classnames('foo', { bar: true }); // => 'foo bar'
+classnames({ 'foo-bar': true }); // => 'foo-bar'
+classnames({ 'foo-bar': false }); // => ''
+classnames({ foo: true }, { bar: true }); // => 'foo bar'
+classnames({ foo: true, bar: true }); // => 'foo bar'
+classnames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
 ```
 
 This is very powerful when combined with functional CSS. **If you're using `cn` to use virtual classes and CSS modules, I suggest integrating `classnames` to it**. Here's how.
@@ -1023,12 +1023,12 @@ This is very powerful when combined with functional CSS. **If you're using `cn` 
 Just modify `makeCn` like this:
 
 ```js
-import classNames from 'classnames'
+import classnames from 'classnames'
 
 const makeCn = (prefixToCssmodules) => (...args) => (
-  // First run classNames, then run convertVirtualClassnames,
+  // First run classnames, then run convertVirtualClassnames,
   // then pass the result to convertCssModuleClassnames
-  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classNames(...args)))
+  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classnames(...args)))
 )
 ```
 
@@ -1041,7 +1041,7 @@ const cn = makeCn({_: style})
 
 ...
 
-{/* cn now acts like Jed Watson's classNames,
+{/* cn now acts like Jed Watson's classnames,
     but it now supports virtual classes (-dark-header-text)
     and CSS module classes (_beta-header-image) */}
 <div className={cn('bold p2', {
