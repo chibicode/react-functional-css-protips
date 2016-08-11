@@ -58,7 +58,7 @@ In functional CSS (using [Tachyons](http://tachyons.io/)), you'd write HTML like
 </article>
 ```
 
-And these are the CSS classes that are built into Tachyons:
+Above HTML uses the following CSS classes that are built into Tachyons.
 
 ```css
 .ba { border-style: solid; border-width: 1px; }
@@ -96,7 +96,7 @@ And these are the CSS classes that are built into Tachyons:
 
 ### Did you think: "This looks like a *terrible* idea"?
 
-I did too, until I actually started using them on my company's production code, and the *maintainability of our frontend 10x'ed*. So why is this not a bad idea? The answer is simple:
+I did too, until I actually started using functional CSS on my company's production code, and the *maintainability of our frontend went up by 10x* (rough estimate). Why? The answer is simple:
 
 - If you use functional CSS, **when you add something new to a page, you'll rarely write any new CSS.** You can build most of what you want to add by composing these small CSS classes.
 - This is a sharp contrast to using traditional "semantic CSS", where you'll *add new CSS classes* like `shopping-cart__item--selected` *every time* you add something new to a page.
