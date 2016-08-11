@@ -1063,8 +1063,7 @@ Issues and pull requests are highly appreciated!
 
 **Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
 
-[![](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
-](https://twitter.com/chibicode/status/763504990736388096)
+<a href="https://twitter.com/chibicode/status/763504990736388096"><img width="480" alt="" src="https://cloud.githubusercontent.com/assets/992008/17598666/6b295028-5fb0-11e6-80dd-9b9432392b97.png"></a>
 
 ### Appendix
 
