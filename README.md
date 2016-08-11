@@ -596,20 +596,20 @@ Virtual classes also make HTML slightly easier to read without adding any new CS
 
 One downside of virtual classes is that you'd have to call `cn` every time for `className`, but this is actually not too bad - I'll explain why on the next ProTip.
 
-#### Write a living style guide for virtual classes
+#### Build a living style guide for virtual classes
 
-**Try to write a living style guide for every virtual class** - if you can't do that, then don't write it. Documentation is crucial, because that's how those virtual classes are going to be reused.
+**Try to build a living style guide for every virtual class** - if you can't do that, then don't write a virtual class. Documentation is **crucial**, because that's how those virtual classes get reused.
 
-Let's say that you write virtual classes called `-row-with-gutter-1` and `-col-with-gutter-1`, which can be used for columns with gutters. And they get converted to Basscss classes. These might not be the best use of virtual classes, but let's ignore that for now.
+Let's say that you write virtual classes called `-row-with-gutter-1` and `-col-with-gutter-1`, which can be used to build a grid system with gutters. And they get converted to Basscss classes. These might not be the best use of virtual classes, but let's ignore that for now.
 
 ```js
 const virtualToFunctional = {
-  '-row-with-gutter-1': 'clearfix mxn1'
-  '-col-1-2-3-4': 'sm-col sm-col-6 md-col md-col-4 lg-col lg-col-3'
+  '-row-with-gutter-1': 'clearfix mxn1',
+  '-col-with-gutter-1': 'px1'
 }
 ```
 
-Then, you'd want to generate a living styleguide like this. I'll show you the code next.
+Next, you'd want to generate a living styleguide like this. I'll show you the code next.
 
 ![screenshot 2016-08-10 at 11 49 15 am](https://cloud.githubusercontent.com/assets/992008/17566510/8a04a544-5ef0-11e6-946e-e6056e0afda4.png)
 
