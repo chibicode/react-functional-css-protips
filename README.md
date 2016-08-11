@@ -407,7 +407,9 @@ Using components/templates for markup will help, but sometimes similar styles ar
 
 If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you probably **don't** want to make a new class called `height-178` and `bottom-12`. They probably aren't reusable, and probably won't be documented, which are against the philosophies of functional CSS. You should just use write regular CSS.
 
-But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? (One of the downsides of using inline styles is that the support for pseudo selectors (e.g. `:hover`) and `@media` queries is poor). Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
+But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? One of the downsides of using inline styles is that the support for pseudo selectors (e.g. `:hover`) and `@media` queries is poor. Libraries like [Radium](https://github.com/FormidableLabs/radium) are designed to solve this, but Radium had [some critical bugs](https://github.com/FormidableLabs/radium/issues/367) that don't seem to have a good solution.
+
+Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
 
 ![screenshot 2016-08-10 at 8 35 20 pm](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
 
