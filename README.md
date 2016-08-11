@@ -1072,3 +1072,4 @@ Some miscellaneous links I found helpful:
 
 - [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
 - [immutable-css](https://github.com/johnotander/immutable-css) by John Otander
+- [Atomic CSS Modules](https://medium.com/yplan-eng/atomic-css-modules-cb44d5993b27) by Michele Bertoli
