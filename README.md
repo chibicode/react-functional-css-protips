@@ -332,7 +332,7 @@ Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, a
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
-(1) They're in uppercase, (2) use San Francisco as `font-family`, and (3) are with some `letter-spacing`. In functional CSS, they'd look like this:
+(1) They're in uppercase, (2) use San Francisco font as `font-family`, and (3) are with some `letter-spacing`. In functional CSS, they'd look like this:
 
 ```html
 <span class='uppercase font-san-francisco letter-spacing-1 ...'>...</span>
