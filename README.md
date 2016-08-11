@@ -22,7 +22,7 @@ I've originally written this to teach functional CSS to my coworkers, but maybe 
 
 - If you're already sold on:
 
-  1. Writing CSS in a **functional** (or atomic/immutable/utility-class) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
+  1. Writing CSS in a **functional** (or [atomic](http://acss.io/)/immutable/utility-class) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
   2. Writing front-end in **[React.js](https://facebook.github.io/react/)**,
 
   Then skip to [**Act II**: Some downsides of using functional CSS](#sunglasses-act-ii-some-downsides-of-using-functional-css-sunglasses).
@@ -1073,3 +1073,4 @@ Some miscellaneous links I found helpful:
 - [How is tachyons different from inline styles?](https://github.com/tachyons-css/tachyons/issues/12)
 - [immutable-css](https://github.com/johnotander/immutable-css) by John Otander
 - [Atomic CSS Modules](https://medium.com/yplan-eng/atomic-css-modules-cb44d5993b27) by Michele Bertoli
+- [Atomic CSS](http://acss.io/) and [atomizer](https://github.com/acss-io/atomizer)
