@@ -332,42 +332,42 @@ Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, a
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
-(1) They're in uppercase, (2) use San Francisco font as `font-family`, and (3) are with some `letter-spacing`. In functional CSS, they'd look like this:
+(1) They're in uppercase, (2) use San Francisco font as `font-family`, and (3) have some `letter-spacing`. In functional CSS, you'd write:
 
 ```html
 <span class='uppercase font-san-francisco letter-spacing-1 ...'>...</span>
 ```
 
-They're most likely written in different components, like so:
+And buttons, tabs, and headings are each likely to be written as a component, like so:
 
 ```js
-// Button.js - blue font
+// Button.js - button tag, blue font
 const Button = (...) => <button className='blue uppercase font-san-francisco letter-spacing-1 ...'>
   ...
 </button>
 
-// Tab.js - gray font
+// Tab.js - a tag, gray font
 const Tab = (...) => <a className='gray uppercase font-san-francisco letter-spacing-1 ...'>
   ...
 </a>
 
-// Heading.js - black, large font
+// Heading.js - h2 tag, black, large font
 const Heading = (...) => <h2 className='black font-h1 uppercase font-san-francisco letter-spacing-1 ...'>
   ...
 </h2>
 ```
 
-Now, suppose that a designer comes in and says that (1) `font-family` should now be Futura, (2) there should be no more uppercase letters and (3) `letter-spacing`.
+Now, suppose that a designer comes and says that (1) `font-family` should now be Futura, (2) the text should be in regular case and (3) have no `letter-spacing`.
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548450/d222ac40-5ea0-11e6-872e-fac447088760.png)
 
-This will require you to do replace `uppercase font-san-francisco letter-spacing-1` with `font-futura` in each of Button.js, Tab.js, and Heading.js.
+This will require you to replace `uppercase font-san-francisco letter-spacing-1` with `font-futura` in each of Button.js, Tab.js, and Heading.js.
 
 ### The "Find-and-Replace" Problem
 
-Above find-and-replace operation would be easy if they all use the same ordering of classes: `uppercase font-san-francisco letter-spacing-1` - but that leaves a lot of room for error. And this is only changing the same 3 classes in 3 different files - what if the codebase is much bigger, or class replacement logic is more complex?
+The above **"Find-and-Replace"** operation would be easy if they all use the same ordering of classes: `uppercase font-san-francisco letter-spacing-1` - but that leaves a lot of room for error. And this is only changing the same 3 classes in 3 different files - what if the codebase is much bigger, or class replacement logic is more complex?
 
-To me, this **find-and-replace** problem, or **batch-modifying similar styles across multiple components (templates)**, can be problematic for functional CSS.
+To me, this **"Find-and-Replace"** problem, or **batch-modifying similar styles across multiple components (templates)**, can be problematic for functional CSS.
 
 Marcelo Somers writes this on his article "[Rationalizing Functional CSS](https://marcelosomers.com/writing/rationalizing-functional-css/)" (emphasis added):
 
