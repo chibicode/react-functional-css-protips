@@ -999,7 +999,7 @@ There's an excellent library called [`react-css-modules`](https://github.com/gaj
 - CSS modules solve the global namespace collision problem.
 - You can rewrite `cn` to play nice with CSS modules.
 
-### :v: ProTip 3: Make `cn` more powerful by integrating `classnames` library :v:
+### :v: ProTip 3: Make `cn` more powerful by integrating the `classnames` package :v:
 
 There's one more thing: Jed Watson wrote a popular library called [`classnames`](https://github.com/JedWatson/classnames), a utility for joining class names together. Here's an example:
 
