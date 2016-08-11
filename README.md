@@ -245,7 +245,25 @@ And **you'd reuse the component instead of reusing HTML directly**:
 
 In other words, **template/component system (for HTML markup) is what makes functional CSS great.**
 
-### I'm sold.
+### But those CSS classes still look too cryptic to me.
+
+Then try [Basscss](http://www.basscss.com/). Its classes are a bit more readable than Tachyons's.
+
+```html
+<div class="inline">inline</div>
+<div class="inline-block">inline-block</div>
+<a href="#" class="block">block</a>
+<div class="table">
+  <div class="table-cell">table-cell</div>
+  <div class="table-cell">table-cell</div>
+</div>
+<div class="clearfix">
+  <div class="left">float left</div>
+  <div class="right">float right</div>
+</div>
+```
+
+### Ok fine, I'm sold.
 
 Great! Here are some more articles on functional CSS:
 
