@@ -172,7 +172,7 @@ And both Basscss and Tachyons have illustrative examples of building larger comp
 
 ![](https://cloud.githubusercontent.com/assets/992008/17543262/2e5cd03e-5e84-11e6-86bb-7e65f56b0d2c.png)
 
-Once you memorize ~50% of the feature set, you'll notice yourself shipping things **really fast**.
+Once you familiarize yourself with ~50% of the feature set, you'll notice yourself shipping things **really fast**.
 
 As for documentation, the flip side is also true. If you roll your own functional CSS library (or add tons of new classes to extend Basscss/Tachyons), but **don't document them**, that's a recipe for a nightmare. In other words, **documentation (of small CSS classes) is what makes functional CSS work.**
 
@@ -407,7 +407,11 @@ Using components/templates for markup will help, but sometimes similar styles ar
 
 If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you probably **don't** want to make a new class called `height-178` and `bottom-12`. They probably aren't reusable, and probably won't be documented, which are against the philosophies of functional CSS. You should just use write regular CSS.
 
-But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? What about a new technique called [CSS Modules](https://github.com/css-modules/css-modules)? I think part of a problem is that React offers so many different ways to write regular CSS, and you probably don't want all those different methods mixed on your codebase.
+But again, how should we write regular CSS? Should we just use [BEM again](https://css-tricks.com/bem-101/)? Or write [CSS in JS (inline styles)](https://speakerdeck.com/vjeux/react-css-in-js)? (One of the downsides of using inline styles is that the support for pseudo selectors (e.g. `:hover`) and `@media` queries is poor). Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
+
+![screenshot 2016-08-10 at 8 35 20 pm](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
+
+I think part of a problem is that React offers many different ways to write regular CSS. You should probably pick one and run with it. But which one should you pick?
 
 ---
 
