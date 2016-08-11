@@ -37,7 +37,7 @@ I've originally written this to teach functional CSS to my coworkers, but maybe 
 
 This example is [taken](http://tachyons.io/components/collections/product-card/index.html) from [Tachyons](http://tachyons.io/), one of the popular functional CSS toolkits. Consider this <s>cat</s> card:
 
-<img width="270" alt="screenshot 2016-08-09 at 2 34 55 pm" src="https://cloud.githubusercontent.com/assets/992008/17534567/9ca18760-5e3e-11e6-8609-70ac771a618e.png">
+<img width="270" alt="" src="https://cloud.githubusercontent.com/assets/992008/17534567/9ca18760-5e3e-11e6-8609-70ac771a618e.png">
 
 In functional CSS (using [Tachyons](http://tachyons.io/)), you'd write HTML like this:
 
@@ -188,7 +188,7 @@ As for documentation, the flip side is also true. If you roll your own functiona
 
 Let's return to the Tachyons cat example:
 
-<img width="270" alt="screenshot 2016-08-09 at 2 34 55 pm" src="https://cloud.githubusercontent.com/assets/992008/17534567/9ca18760-5e3e-11e6-8609-70ac771a618e.png">
+<img width="270" alt="" src="https://cloud.githubusercontent.com/assets/992008/17534567/9ca18760-5e3e-11e6-8609-70ac771a618e.png">
 
 ```html
 <article class="br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw5 center">
@@ -458,7 +458,7 @@ One of the downsides of using inline styles is that the support for pseudo selec
 
 Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
 
-![screenshot 2016-08-10 at 8 35 20 pm](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
+![](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
 
 I think part of a problem is that React offers many different ways to write regular CSS. You should probably pick one and run with it. But which one should you pick?
 
@@ -611,7 +611,7 @@ const virtualToFunctional = {
 
 Next, you'd want to generate a living styleguide like this. I'll show you the code next.
 
-![screenshot 2016-08-10 at 11 49 15 am](https://cloud.githubusercontent.com/assets/992008/17566510/8a04a544-5ef0-11e6-946e-e6056e0afda4.png)
+![](https://cloud.githubusercontent.com/assets/992008/17566510/8a04a544-5ef0-11e6-946e-e6056e0afda4.png)
 
 #### The Styleguide component: usage
 
@@ -680,7 +680,7 @@ const Styleguide = ({ title, classnames, SampleCode }) =>
 
 The above code renders this:
 
-![screenshot 2016-08-10 at 12 04 33 pm](https://cloud.githubusercontent.com/assets/992008/17567069/b2a21ed0-5ef2-11e6-8a23-a618beb92ece.png)
+![](https://cloud.githubusercontent.com/assets/992008/17567069/b2a21ed0-5ef2-11e6-8a23-a618beb92ece.png)
 
 #### The Styleguide component: implementation (second half)
 
@@ -734,7 +734,7 @@ const Styleguide = ({ title, classnames, SampleCode }) =>
 
 The above code renders this:
 
-![screenshot 2016-08-10 at 12 26 57 pm](https://cloud.githubusercontent.com/assets/992008/17567814/c7eeb9d0-5ef5-11e6-98d2-2a770c53f0d4.png)
+![](https://cloud.githubusercontent.com/assets/992008/17567814/c7eeb9d0-5ef5-11e6-98d2-2a770c53f0d4.png)
 
 Note: if you want to enable syntax highlighting, you can try using [Prism](https://github.com/tomchentw/react-prism), which supports JSX well.
 
@@ -1050,7 +1050,7 @@ Issues and pull requests are highly appreciated!
 
 **Shu Uesugi** (Twitter: [@chibicode](http://twitter.com/chibicode) / Email: [shu@chibicode.com](mailto:shu@chibicode.com))
 
-[![screenshot 2016-08-10 at 4 06 54 pm](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
+[![](https://cloud.githubusercontent.com/assets/992008/17574250/7bd3c9fe-5f14-11e6-8c45-580f2c1b7734.png)
 ](https://twitter.com/chibicode/status/763504990736388096)
 
 ### Appendix
