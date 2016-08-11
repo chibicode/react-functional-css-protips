@@ -328,7 +328,7 @@ Similarly, if you're going to **extend** (not customize) Basscss/Tachyons by add
 
 ## :sunglasses: Act II: Some downsides of using functional CSS :sunglasses:
 
-Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, and checkboxes all have text styles that look like this:
+Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, and headings all have text styles that look like this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
