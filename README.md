@@ -487,7 +487,7 @@ Let's recall our previous example, where some texts (1) are in `uppercase`, (2) 
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
-Instead of writing `uppercase font-san-francisco letter-spacing-1`:
+Instead of writing `uppercase font-san-francisco letter-spacing-1` like we did before:
 
 ```js
 const Button = (...) => <button className='blue uppercase font-san-francisco letter-spacing-1 ...'>
@@ -503,7 +503,17 @@ const Heading = (...) => <h2 className='black font-h1 uppercase font-san-francis
 </h2>
 ```
 
-you'd write a virtual class called `-text-style-emphasis`. A hyphen is added in the beginning to indicate that it's a virtual class. Then, **use `cn`** (short for "class name") helper function on `className`, which converts `-text-style-emphasis` to `uppercase font-san-francisco letter-spacing-1`.
+You'd write a virtual class called `-text-style-emphasis`:
+
+```js
+'blue -text-style-emphasis'
+'gray -text-style-emphasis'
+'black font-h1 -text-style-emphasis'
+```
+
+**Virtual classes are prefixed with a hyphen by convention, so it's easier to spot them.**
+
+Then, **use `cn`** (short for "class name") helper function on `className`, which converts `-text-style-emphasis` to `uppercase font-san-francisco letter-spacing-1` at runtime:
 
 ```js
 import cn from '...'
@@ -523,7 +533,7 @@ const Heading = (...) => <h2 className={cn('black font-h1 -text-style-emphasis .
 
 #### The `cn` function and virtual classes
 
-The `cn` function, which you can implement quickly, will convert those virtual classes to functional classes.
+The `cn` function will convert pre-defined virtual classes to functional classes. Here's a simple implementation:
 
 ```js
 // cn.js
