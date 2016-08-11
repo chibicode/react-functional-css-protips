@@ -161,20 +161,20 @@ By the way, the code above is actually from an excellent article **[CSS and Scal
 
 I strongly encourage you to [read all of Adam's words](http://mrmrs.io/writing/2016/03/24/scalable-css/).
 
-### Okay, so you won't need to write more CSS, but isn't writing HTML harder now?
+### Okay, so you'll write less CSS, but isn't writing HTML harder now?
 
-When you use these small classes, it'll be harder to write HTML code **IF** you don't know which one of those small classes to use. But here's the key part: popular functional CSS toolkits like [Basscss](http://basscss.com/) and [Tachyons](http://tachyons.io/) are **extremely well documented**. Just take a look at them:
+When you use these small classes, it'll be harder to write HTML code **IF** you don't know which classes to use. But here's the key part: popular functional CSS toolkits like [Basscss](http://basscss.com/) and [Tachyons](http://tachyons.io/) are **extremely well documented**. Just take a look at their documentation:
 
 - [Basscss Docs](http://www.basscss.com/)
 - [Tachyons Docs](http://tachyons.io/docs/)
 
-And both Basscss and Tachyons have illustrative examples of building larger components using small classes:
+And both Basscss and Tachyons have illustrative examples of building larger components by combining small classes. Here's how you build a panel using Basscss classes, according to their official docs.
 
 ![](https://cloud.githubusercontent.com/assets/992008/17543262/2e5cd03e-5e84-11e6-86bb-7e65f56b0d2c.png)
 
-Once you memorize ~50% of the feature sets, you'll be prototyping designs really fast.
+Once you memorize ~50% of the feature set, you'll notice yourself shipping things **really fast**.
 
-The flip side is also true - if you roll your own functional CSS library (or add a lot of new classes to extend Basscss/Tachyons), but don't document them, that's a recipe for nightmare. In other words, **documentation (of small CSS classes) is what makes functional CSS work.**
+As for documentation, the flip side is also true. If you roll your own functional CSS library (or add tons of new classes to extend Basscss/Tachyons), but **don't document them**, that's a recipe for a nightmare. In other words, **documentation (of small CSS classes) is what makes functional CSS work.**
 
 ### What about code reuse for HTML?
 
