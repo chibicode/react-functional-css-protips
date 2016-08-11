@@ -458,7 +458,7 @@ One of the downsides of using inline styles is that the support for pseudo selec
 
 Or should we try the new kid on the block, [CSS Modules](https://github.com/css-modules/css-modules)?
 
-![](https://cloud.githubusercontent.com/assets/992008/17578118/1efaaaba-5f3a-11e6-9042-246c180e1995.png)
+<a href="https://twitter.com/mxstbr/status/756769255111192576"><img width="482" alt="" src="https://cloud.githubusercontent.com/assets/992008/17598955/bf5f3620-5fb1-11e6-8c5d-eb752a891b20.png"></a>
 
 I think part of a problem is that React offers many different ways to write regular CSS. You should probably pick one and run with it. But which one should you pick?
 
