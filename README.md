@@ -6,30 +6,30 @@
 
 This repo is a Three-Act essay.
 
-- [Prologue: Who this document is for](#sunglasses-prologue-who-this-document-is-for-sunglasses)
-- [Act I: What is functional CSS and why would I want to use it?](#sunglasses-act-i-what-is-functional-css-and-why-would-i-want-to-use-it-sunglasses)
-- [Act II: Some downsides of using functional CSS](#sunglasses-act-ii-some-downsides-of-using-functional-css-sunglasses)
-- [Act III: Some ProTips on Writing Functional CSS in React](#sunglasses-act-iii-some-protips-on-writing-functional-css-in-react-sunglasses)
-  - [ProTip 1: Use "virtual classes" and document them](#v-protip-1-use-virtual-classes-and-document-them-v)
-  - [ProTip 2: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
-  - [ProTip 3: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
-- [Epilogue](#sunglasses-epilogue-sunglasses)
-  - [Appendix](#appendix)
+- [**Prologue:** Who this document is for](#sunglasses-prologue-who-this-document-is-for-sunglasses)
+- [**Act I:** What is functional CSS and why would I want to use it?](#sunglasses-act-i-what-is-functional-css-and-why-would-i-want-to-use-it-sunglasses)
+- [**Act II**: Some downsides of using functional CSS](#sunglasses-act-ii-some-downsides-of-using-functional-css-sunglasses)
+- [**Act III**: Some ProTips on Writing Functional CSS in React](#sunglasses-act-iii-some-protips-on-writing-functional-css-in-react-sunglasses)
+  - [**ProTip 1**: Use "virtual classes" and document them](#v-protip-1-use-virtual-classes-and-document-them-v)
+  - [**ProTip 2**: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
+  - [**ProTip 3**: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
+- [**Epilogue**](#sunglasses-epilogue-sunglasses)
+  - [**Appendix**](#appendix)
 
 ## :sunglasses: Prologue: Who this document is for :sunglasses:
 
-I've originally written this to help my coworkers learn functional CSS, but maybe you'll find it helpful too.
+I've originally written this to teach functional CSS to my coworkers, but maybe you'll find it helpful too.
 
 - If you're already sold on:
 
   1. Writing CSS in a **functional** (or atomic/immutable/utility-class) way and enjoy using toolkits like [Basscss](http://basscss.com) or [Tachyons](http://tachyons.io/), and
-  2. Writing front-end in **[React.js](https://facebook.github.io/react/)**
+  2. Writing front-end in **[React.js](https://facebook.github.io/react/)**,
 
-  Then skip to **"ACT II: Some downsides of using functional CSS"** section.
+  Then skip to [**Act II**: Some downsides of using functional CSS](#sunglasses-act-ii-some-downsides-of-using-functional-css-sunglasses).
 
-- If you're not sold, or not sure what functional CSS is, read the below section called "What is functional CSS and why would I want to use it?".
+- If you don't know what functional CSS is, or if you know it but aren't sold, continue reading the next section.
 
-- If you don't know React, you should learn it! I've written a tutorial called [React.js Introduction For People Who Know Just Enough jQuery To Get By](http://reactfordesigners.com/labs/reactjs-introduction-for-people-who-know-just-enough-jquery-to-get-by/), which has received [0.3 million pageviews](https://cloud.githubusercontent.com/assets/992008/17539561/f2842d0c-5e63-11e6-9617-0068cbb5de28.png) in 1 year.
+- If you don't know React, you should learn it! I've written a [tutorial](http://reactfordesigners.com/labs/reactjs-introduction-for-people-who-know-just-enough-jquery-to-get-by/), which has received [0.3 million pageviews](https://cloud.githubusercontent.com/assets/992008/17539561/f2842d0c-5e63-11e6-9617-0068cbb5de28.png) in 1 year.
 
 ---
 
