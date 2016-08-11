@@ -373,15 +373,21 @@ This will require you to replace `uppercase font-san-francisco letter-spacing-1`
 
 ### The "Find-and-Replace" Problem
 
-The above **"Find-and-Replace"** operation would be easy if they all use the same ordering of classes: `uppercase font-san-francisco letter-spacing-1` - but that leaves a lot of room for error. And this is only changing the same 3 classes in 3 different files - what if the codebase is much bigger, or class replacement logic is more complex?
+The above **"Find-and-Replace"** operation would be easy **IF** each file uses the same ordering of classes:
 
-To me, this **"Find-and-Replace"** problem, or **batch-modifying similar styles across multiple components (templates)**, can be problematic for functional CSS.
+```js
+// Must be in this exact order for Button.js, Tab.js and Heading.js
+className='... uppercase font-san-francisco letter-spacing-1'
+```
+But that leaves a lot of room for error. And this is only changing the same 3 classes in 3 different files. What if the codebase is much bigger? What if we have to do more complex Find-and-Replace?
 
-Marcelo Somers writes this on his article "[Rationalizing Functional CSS](https://marcelosomers.com/writing/rationalizing-functional-css/)" (emphasis added):
+To me, this **"Find-and-Replace"** problem, or batch-modifying similar styles across **multiple** components (templates) is one of the challenging things when using functional CSS **in practice**.
+
+[Marcelo Somers writes](https://marcelosomers.com/writing/rationalizing-functional-css/): (emphasis added):
 
 > It's wonderful the first time you create a component, but updating styles in an existing system can be a complicated mess of find and replace and other keyboard shortcuts.
 >
-> ... **But [using find and replace] presumes you created multiple of the same "components" by putting the utility classes in the same order, especially when doing find and replace across multiple pages.** Otherwise, there is no easy way to search across your entire application to find where similar components were implemented.
+> ... **[Using find and replace] presumes you created multiple of the same "components" by putting the utility classes in the same order, especially when doing find and replace across multiple pages.** Otherwise, there is no easy way to search across your entire application to find where similar components were implemented.
 >
 > This might be my single biggest concern about implementing functional CSS in a large app. Just imagine a standard "box" component made up of 7-10 utility classes. If you wanted to change the font size inside all the boxes, you'd need find every instance across your app and update each one manually.
 >
@@ -395,7 +401,7 @@ He suggests a "possible fix," where you'd add "a fake class" that has no effect 
 </div>
 ```
 
-But again, you might forget to use add that class, and you're screwed.
+But again, you might forget to add this fake class, and then you'd be screwed.
 
 ### Styles might diverge, and fixing them can be challenging
 
