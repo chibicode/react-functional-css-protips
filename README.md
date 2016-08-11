@@ -252,7 +252,7 @@ And here are some real-world styleguides that use functional CSS:
 
 ### [Basscss](http://basscss.com/) or [Tachyons](http://tachyons.io/)? How to customize each?
 
-I use both. I encourage you to learn [Basscss](http://basscss.com/) first because its class names tend to be easier to understand. But I like how [Tachyons](http://tachyons.io/) have first-class responsive support for all built-in classes, [like this](http://tachyons.io/docs/typography/text-align/):
+I use both. I encourage you to learn [Basscss](http://basscss.com/) first because its class names tend to be easier to understand. But I like how [Tachyons](http://tachyons.io/) have first-class responsive design support for all the built-in classes, [like this](http://tachyons.io/docs/typography/text-align/):
 
 ```css
 @custom-media --breakpoint-not-small screen and (min-width: 48em);
@@ -282,11 +282,21 @@ I use both. I encourage you to learn [Basscss](http://basscss.com/) first becaus
 }
 ```
 
-As of this writing, [similar utilities are available on Basscss as addons](https://github.com/basscss/addons).
+So if you want to center align something on a mobile screen, but use left align on bigger screens, you'd write:
 
-The new CSS variables used in both Basscss and Tachyons (like `var(--name)` or `@custom-media`) can be customized by using [PostCSS](https://github.com/postcss/postcss) with [postcss-cssnext](https://github.com/MoOx/postcss-cssnext) plugin. If you're using [Webpack](https://webpack.github.io/) to load your React code, use [postcss-loader](https://github.com/postcss/postcss-loader) with [postcss-import](https://github.com/postcss/postcss-loader#integration-with-postcss-import). You can learn more about the new CSS features [here](http://cssnext.io/features/) and PostCSS [here](http://cssnext.io/postcss/).
+```html
+<span class='tc tl-ns'>...</span>
+```
 
-Sometimes Basscss/Tachyons don't allow customizations via CSS variables:
+As of this writing, [responsive utilities are available on Basscss as addons](https://github.com/basscss/addons).
+
+#### Notes on Customizing
+
+The new CSS variables used in both Basscss and Tachyons (like `var(--name)` or `@custom-media`) can be customized by using [PostCSS](https://github.com/postcss/postcss) with [postcss-cssnext](https://github.com/MoOx/postcss-cssnext) plugin. If you're using [Webpack](https://webpack.github.io/) to load your React code, use [postcss-loader](https://github.com/postcss/postcss-loader) with [postcss-import](https://github.com/postcss/postcss-loader#integration-with-postcss-import).
+
+You can learn more about the new CSS features [here](http://cssnext.io/features/) and PostCSS [here](http://cssnext.io/postcss/).
+
+Also, sometimes Basscss and Tachyons don't allow customizations via CSS variables:
 
 ```css
 /* Tachyons src/_type-scale.css */
@@ -310,7 +320,9 @@ In that case, **copy the file** you want to customize, **change the values** (bu
 @import ...;
 ```
 
-Finally, I **don't** recommend writing a functional CSS library of your own **unless** you're willing to document most of the classes extensively. Similarly, if you're going to **extend** (not customize) Basscss/Tachyons by adding more small classes, document most of them.
+Finally, I **don't** recommend writing a functional CSS library of your own **unless** you're willing to document most of the classes extensively.
+
+Similarly, if you're going to **extend** (not customize) Basscss/Tachyons by adding more small classes, document the ones you add, because otherwise you'll end up adding multiple functional classes that do the same thing.
 
 ---
 
