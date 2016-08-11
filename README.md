@@ -537,9 +537,11 @@ The `cn` function will convert pre-defined virtual classes to functional classes
 
 ```js
 // cn.js
+
+// A mapping from virtual class -> functional class
 const virtualToFunctional = {
   '-text-style-emphasis': 'uppercase font-san-francisco letter-spacing-1'
-  // More virtual class -> functional class mapping here
+  // ...
 }
 
 function convertVirtualClassnames (classNames) {
@@ -549,10 +551,11 @@ function convertVirtualClassnames (classNames) {
   )).join(' ')
 }
 
+// This becomes "cn"
 export default convertVirtualClassnames
 ```
 
-You can implement a version which supports **recursive** converting. Also instead of replacing virtual classes with functional classes, it might be useful to **keep** the virtual classes and **add** functional classes, for easier debugging from your browser. This is up to you.
+You can implement a version which supports **recursive** converting, like the one below.
 
 ```js
 // cn.js
@@ -575,7 +578,7 @@ function convertVirtualClassnames (classNames) {
 export default convertVirtualClassnames
 ```
 
-By making hyphen (`-`)  the first character and leaving virtual classes when converting them on `cn`, you can easily tell which classes are virtual and which classes are functional from your Chrome/etc DevTools.
+Note that the version above leaves original virtual classes untouched rather than removing them, which might be better for debugging from your browser. Because virtual classes are prefixed with a hyphen by convention, you can easily tell which classes are virtual vs functional from your Chrome/etc DevTools.
 
 #### What problem do virtual classes solve?
 
@@ -583,9 +586,9 @@ By making hyphen (`-`)  the first character and leaving virtual classes when con
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548450/d222ac40-5ea0-11e6-872e-fac447088760.png)
 
-Instead of finding and replacing a set of utility classes, you can just modify the virtual to functional mapping, or change virtual classes on HTML.
+Instead of finding and replacing multiple utility classes, you can just modify the virtual to functional mapping, or change virtual classes used on markup.
 
-If virtual classes are well documented (which I'll cover next), they can force developers to write consistent styles and prevent a mess like this:
+If virtual classes are well documented (which I'll cover next), they can force developers to build components with consistent styles and avoid a mess like this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17549227/20113d2e-5ea4-11e6-851a-2522f01bf80b.png)
 
