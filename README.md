@@ -276,7 +276,7 @@ And here are some real-world styleguides that use functional CSS:
 - [Solid, Buzzfeed's Functional CSS Style Guide](http://solid.buzzfeed.com/) ([Blog Post](https://medium.com/buzzfeed-design/introducing-solid-1c16b1bf4868))
 - [Marvel's Functional CSS Style Guide](https://marvelapp.com/styleguide/) ([Blog Post](https://blog.marvelapp.com/the-marvel-styleguide/))
 
-### [Basscss](http://basscss.com/) or [Tachyons](http://tachyons.io/)? How to customize each?
+### Do you use [Basscss](http://basscss.com/) or [Tachyons](http://tachyons.io/)? How do I customize the built-in styles?
 
 I use both. I encourage you to learn [Basscss](http://basscss.com/) first because its class names tend to be easier to understand. But I like how [Tachyons](http://tachyons.io/) have first-class responsive design support for all the built-in classes, [like this](http://tachyons.io/docs/typography/text-align/):
 
