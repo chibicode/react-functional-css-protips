@@ -757,7 +757,7 @@ React offers many ways to write regular CSS. After trying many of them, **I conc
 
 If you don't know what CSS modules are, here's an excellent introductory post: [What are CSS Modules and why do we need them?](https://css-tricks.com/css-modules-part-1-need/)
 
-CSS modules solve one problem: **prevents global CSS styles from colliding.** You can write CSS like this:
+CSS modules solve one problem: **global namespace collision.** By using CSS Modules, you can write CSS like this:
 
 ```css
 /* header.css */
@@ -767,14 +767,17 @@ CSS modules solve one problem: **prevents global CSS styles from colliding.** Yo
 }
 ```
 
-Then, **load that CSS file in JS into a variable on a React component definition**
+Then, **load that CSS file from JS as an object, whose keys are the class names**:
 
 ```js
 // Header.js
+
+// Load CSS into JS as a variable - yes, that's possible with CSS modules!
 import styles from './header.css'
 
 const Header = () => {
   ...
+  {/* Then use class name "headerImage" as a key */}
   <div className={styles.headerImage}>
     ...
   </div>
@@ -799,9 +802,13 @@ And it generates a unique class name and a corresponding style declaration when 
 </div>
 ```
 
-By using CSS classes, you can name CSS classes whatever you want and don't need to worry about them colliding. Also, because JS files load CSS files, if those JS files are not required, then those CSS won't be loaded, cutting down file size. This is much better than plain-old BEM in my opinion.
+By using CSS modules, you can name CSS classes whatever you want and don't need to worry about them colliding with some other classes that are written in the past or will be written in the future.
 
-Webpack's CSS loader supports CSS modules ([documentation](https://github.com/webpack/css-loader)). CSS modules also work on server-side rendering: use `css-loader/locals` instead of `style-loader!css-loader` on server-side webpack config, and [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin) on client-side webpack config for production.
+Also, because you load CSS files from JS files, if those JS files are not loaded, then the corresponding CSS won't be loaded. This can cut down the CSS size when you use [Webpack's code splitting feature](https://webpack.github.io/docs/code-splitting.html).
+
+These are the reasons why I think CSS modules are much better than plain-old BEM.
+
+**How to use**: Webpack's CSS loader supports CSS modules, so [read the documentation](https://github.com/webpack/css-loader). CSS modules also work on server-side rendering: use `css-loader/locals` instead of `style-loader!css-loader` on server-side webpack config, and [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin) on client-side webpack config for production.
 
 #### Side note: Alternatives
 
@@ -828,7 +835,7 @@ This syntax doesn't seem to play nice with virtual CSS function `cn`, where you'
 <div className={cn('...')} >
 ```
 
-You can use string interpolation, but we can do better. Here's an idea: **you can make `cn` function to support CSS modules.**
+You can use string interpolation to mix the two, but we can do better. Here's an idea: **you can make `cn` function support CSS modules.**
 
 #### New API for `cn`:
 
