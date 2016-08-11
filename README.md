@@ -98,9 +98,10 @@ Above HTML uses the following CSS classes that are built into Tachyons.
 
 I did too, until I actually started using functional CSS on my company's production code, and the *maintainability of our frontend went up by 10x* (rough estimate). Why? The answer is simple:
 
-- If you use functional CSS, **when you add something new to a page, you'll rarely write any new CSS.** You can build most of what you want to add by composing these small CSS classes.
-- This is a sharp contrast to using traditional "semantic CSS", where you'll *add new CSS classes* like `shopping-cart__item--selected` *every time* you add something new to a page.
-- Because you'll write CSS less, overall CSS size will be small. That will be better for users (faster load time), but also *better for developers*. Why? Developers need to look at existing CSS and ask themselves *"is there any class I can reuse?"* - but this gets harder as the size of CSS grows.
+- If you use functional CSS, **when you add something new to a page, you'll rarely write any new CSS.** You can build most of what you want by composing these small CSS classes.
+- This is a sharp contrast to using traditional "semantic CSS", where you'll add new classes like `shopping-cart__item--selected` **every time** you add something new.
+- Because you'll write CSS less, your overall CSS size will be small. That's a win for your users (faster load time), but also a win for developers.
+  - Why? Because developers need to look at existing CSS and ask themselves *"is there any class I can reuse?"* - but this gets harder as the size of CSS grows.
 
 ### On *not* writing new CSS
 
@@ -492,7 +493,7 @@ By making hyphen (`-`)  the first character and leaving virtual classes when con
 
 Instead of finding and replacing a set of utility classes, you can just modify the virtual to functional mapping, or change virtual classes on HTML.
 
-If virtual classes are well documented (which I'll cover next), they can force devs to write consistent styles and prevent a mess like this:
+If virtual classes are well documented (which I'll cover next), they can force developers to write consistent styles and prevent a mess like this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17549227/20113d2e-5ea4-11e6-851a-2522f01bf80b.png)
 
