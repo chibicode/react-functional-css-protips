@@ -358,7 +358,7 @@ Functional CSS isn't perfect, however. Consider a design where, buttons, tabs, a
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
-(1) They're in uppercase, (2) use San Francisco font as `font-family`, and (3) have some `letter-spacing`. In functional CSS, you'd write:
+(1) They're in `uppercase`, (2) use San Francisco font as `font-family`, and (3) have some `letter-spacing`. In functional CSS, you'd write:
 
 ```html
 <span class='uppercase font-san-francisco letter-spacing-1 ...'>...</span>
@@ -433,7 +433,7 @@ That's not too bad with if you can visually examine each component and figure ou
 
 Moreover, with functional CSS, **you'll likely end up in a state like above when you're writing new components.**
 
-If ideas like "semi-important texts (1) are in uppercase, (2) use San Francisco as font-family, and (3) have some `letter-spacing`." are not represented/documented anywhere, and **a dev has to make a decision** without a designer (which happens **often** in practice), you'll end up in a state like earlier.
+If ideas like "semi-important texts (1) are in `uppercase`, (2) use San Francisco as `font-family`, and (3) have some `letter-spacing`." are not represented/documented anywhere, and **a dev has to make a decision** without a designer (which happens **often** in practice), you'll end up in a state like earlier.
 
 Using components/templates to reuse markup will help, but you can't componentize everything. Sometimes different components need to use similar styles.
 
@@ -475,15 +475,15 @@ In the next act, I'll present my take on solving these problems.
 
 ## :sunglasses: Act III: Some ProTips on Writing Functional CSS in React :sunglasses:
 
-I spent some time thinking about how these problems can be solved. Here are my initial thoughts - they are pretty experimental.
+I spent some time thinking about how these problems can be solved. Here are my initial thoughts. They are pretty experimental and **not yet** battle tested. I'll update this document after I try these experiments on production for several months.
 
 Also note: **these protips are React.js specific.**
 
 ### :v: ProTip 1: Use "virtual classes" and document them :v:
 
-A **virtual class** is a class which gets converted into a set of functional CSS classes. The name "virtual" is inspired from React's virtual DOM.
+**A virtual class is a class which gets converted into a set of functional CSS classes at runtime.** The name is inspired by React's virtual DOM.
 
-Let's recall our previous example, where some texts (1) are in uppercase, (2) use San Francisco as font-family, and (3) have some letter-spacing.
+Let's recall our previous example, where some texts (1) are in `uppercase`, (2) use San Francisco font as `font-family`, and (3) have some `letter-spacing`.
 
 ![](https://cloud.githubusercontent.com/assets/992008/17548431/c116cba2-5ea0-11e6-90fa-f4b517bef37f.png)
 
