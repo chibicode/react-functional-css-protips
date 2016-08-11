@@ -199,9 +199,15 @@ Let's return to the Tachyons cat example:
 </article>
 ```
 
-Suppose that somewhere else on your app, you'll need to have something similar to above, but for dogs instead of cats. You'll need to copy paste above code, and replace the photo, name, price, and description, and *keep all of the classes.* That sounds brittle and not very DRY.
+Suppose that somewhere else on your app, you'll need to have a card similar to above, but the card features a dog instead. You'll need to:
 
-Instead, you should be using some sort of **HTML templates**. In Rails, you can use partials. In React, you can create a component:
+- Copy-paste above code
+- Replace the photo, name, price, and description
+- Keep all of the classes.
+
+That sounds brittle and not very DRY.
+
+Instead, you should be using some sort of **HTML templates**. Rails has partials and Django has templates for this purpose. In React or Angular, you can create a component. Here's a React example:
 
 ```js
 const ItemCard = ({ name, price, image, description, alt }) => (
@@ -222,7 +228,7 @@ const ItemCard = ({ name, price, image, description, alt }) => (
 )
 ```
 
-and you reuse the component instead of reusing HTML:
+And **you'd reuse the component instead of reusing HTML directly**:
 
 ```js
 <ItemCard name='Cat' price='$1,000' image='...' description='...' alt='...' />
