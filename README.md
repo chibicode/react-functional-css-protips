@@ -439,7 +439,7 @@ Using components/templates to reuse markup will help, but you can't componentize
 
 ### You'd still have to write CSS from time to time
 
-If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you **don't** want to make a new class called `height-178` and `bottom-12`. They aren't reusable and probably won't be documented. This goes against the philosophies of functional CSS.
+If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you **don't** want to make new classes called `height-178` and `bottom-12`. They aren't reusable and probably won't be documented. This goes against the philosophies of functional CSS.
 
 In this case, you should just use write regular CSS which **augument** functional classes:
 
@@ -613,7 +613,7 @@ Next, you'd want to generate a living styleguide like this. I'll show you the co
 
 ![](https://cloud.githubusercontent.com/assets/992008/17566510/8a04a544-5ef0-11e6-946e-e6056e0afda4.png)
 
-#### The Styleguide component: usage
+#### The Styleguide component: Usage
 
 The above style guide is generated from this `Styleguide` component:
 
@@ -637,11 +637,11 @@ The above style guide is generated from this `Styleguide` component:
 
 - `title` is the section title.
 - `classnames` is the list of virtual classes.
-- `SampleCode` is a React component definition, which takes `cnProxy` and `Placeholder` as props, and renders code that illustrates a use of these virtual classes. Use `cnProxy` instead of `cn`, and `Placeholder` for placeholder code.
+- `SampleCode` is a React component definition, which takes `cnProxy` and `Placeholder` as props, and renders some HTML that illustrates a use of these virtual classes. Use `cnProxy` instead of `cn`, and `Placeholder` as placeholders in HTML.
 
-#### The Styleguide component: implementation (first half)
+#### The Styleguide component: Implementation (first half)
 
-Here's the first half of the code for `Styleguide`:
+Here's the first half of the code for `Styleguide`, with comments. This is the simple part.
 
 ```js
 import cn from '...'
@@ -682,7 +682,7 @@ The above code renders this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17567069/b2a21ed0-5ef2-11e6-8a23-a618beb92ece.png)
 
-#### The Styleguide component: implementation (second half)
+#### The Styleguide component: Implementation (second half)
 
 The second half of `Styleguide` code looks like this:
 
@@ -736,22 +736,22 @@ The above code renders this:
 
 ![](https://cloud.githubusercontent.com/assets/992008/17567814/c7eeb9d0-5ef5-11e6-98d2-2a770c53f0d4.png)
 
-Note: if you want to enable syntax highlighting, you can try using [Prism](https://github.com/tomchentw/react-prism), which supports JSX well.
+Note: if you want to enable syntax highlighting like I did, you can use [Prism](https://github.com/tomchentw/react-prism), which supports JSX well.
 
 #### ProTip 1 Conclusion
 
 - Use virtual classes, which gets converted to functional class names on render.
-- Write a mapping from virtual classes to functional classes, and a `cn` helper which does the translation. Then call `cn` for `className`.
-- They solve the "Find-and-Replace" problem which can happen often when writing functional CSS.
-- Create a component for generating a style guide for virtual classes.
+- Write a mapping from virtual classes to functional classes, and implement a `cn` helper which does the translation. Then call `cn` on `className`.
+- Virtual classes solve the "Find-and-Replace" problem which can happen often when writing functional CSS.
+- Make it easy to generate a living style guide for virtual classes.
 
 ### :v: ProTip 2: Use CSS Modules and call them from `cn` :v:
 
-You'd still have to write CSS if it doesn't make sense to use functional styles. Example I wrote earlier:
+You'd still have to write regular CSS (or inline styles) when functional classes don't cut it. Example I wrote earlier:
 
-> If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you probably **don't** want to make a new class called `height-178` and `bottom-12`.
+> If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you **don't** want to make new classes called `height-178` and `bottom-12`.
 
-React offers many ways to write CSS. After trying all of them, **I decided that [CSS modules](https://github.com/css-modules/css-modules) is the way to go**.
+React offers many ways to write regular CSS. After trying many of them, **I concluded that [CSS modules](https://github.com/css-modules/css-modules) are the way to go**.
 
 #### What are CSS modules?
 
