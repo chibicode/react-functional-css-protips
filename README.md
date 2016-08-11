@@ -4,7 +4,7 @@
 
 ### Table of Contents
 
-This repo is a Three-Act essay.
+This repo is a Three-Act <s>rant</s> essay.
 
 - [**Prologue:** Who this document is for](#sunglasses-prologue-who-this-document-is-for-sunglasses)
 - [**Act I:** What is functional CSS and why would I want to use it?](#sunglasses-act-i-what-is-functional-css-and-why-would-i-want-to-use-it-sunglasses)
