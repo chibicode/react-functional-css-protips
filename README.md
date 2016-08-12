@@ -155,7 +155,7 @@ By the way, the code above is actually from an excellent article **[CSS and Scal
 
 > **Even if you did read all of the available css and stumbled upon some code that you think might be reusable - what if someone edits it later? If you are starting from the assumption that your css isn't reusable, your first instinct is to write new css. But most likely you aren't creating a new classification of visual styles.** In my experience it is likely that you are replicating visual styles that already exist.
 
-> ... Outside of some brand specific background-images, gradients, and colors etc., **the overwhelming majority of css you would need for your site has already been written.**.
+> ... Outside of some brand specific background-images, gradients, and colors etc., **the overwhelming majority of css you would need for your site has already been written.**
 >
 > ... **The real way to scale css, is to stop writing css.** Abstract out the things you use most and move to a multi-class pattern where you compose visual patterns in your html. You might be amazed at how quickly your team starts to move.
 
@@ -950,40 +950,39 @@ First, write a function called `convertCssModuleClassnames`, which takes `prefix
 and return a function which takes an argument for `cn` (which is a string containing class names) and returns new class names.
 
 ```js
-const convertCssModuleClassnames = (prefixToCssmodules) => (classnames) => (
+const convertCssModuleClassnames = (prefixToCssmodules) => (classNames) => (
   // Only proceed if prefixToCssmodules is not empty/undefined.
-  // Otherwise, just return classnames (else case)
+  // Otherwise, just return classNames (else case)
   prefixToCssmodules
-  ? // For each class name...
-  classnames.split(' ').map((classname) => {
+  ? classNames.split(' ').map((className) => { // For each class name...
     let convertedClassname
 
     // For each prefix (like "h_" or "f_")...
     Object.keys(prefixToCssmodules).forEach((prefix) => {
       // Test to see if the prefix matches the class name
       const regexp = new RegExp(`^${prefix}`)
-      if (regexp.test(classname)) {
+      if (regexp.test(className)) {
         // If it matches, get the CSS module object
         // by calling prefixToCssmodules[prefix],
-        // then look up the classname (without the prefix)
-        convertedClassname = prefixToCssmodules[prefix][classname.replace(regexp, '')]
+        // then look up the className (without the prefix)
+        convertedClassname = prefixToCssmodules[prefix][className.replace(regexp, '')]
       }
     })
 
     // If successfully converted, return both the CSS module version
     // and the pre-conversion version (for in-browser debugging).
-    return `${convertedClassname} ${classname}` || classname
+    return `${convertedClassname} ${className}` || className
   }).join(' ')
-  : classnames
+  : classNames
 )
 ```
 
 Then, you can combine it with `convertVirtualClassnames` before you export:
 
 ```js
-const makeCn = (prefixToCssmodules) => (classnames) => (
+const makeCn = (prefixToCssmodules) => (classNames) => (
   // First run convertVirtualClassnames, then pass the result to convertCssModuleClassnames
-  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classnames))
+  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classNames))
 )
 
 export default makeCn
