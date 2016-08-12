@@ -12,7 +12,7 @@ This repo is a Three-Act <s>rant</s> essay.
 - [**Act III**: Some ProTips on Writing Functional CSS in React](#sunglasses-act-iii-some-protips-on-writing-functional-css-in-react-sunglasses)
   - [**ProTip 1**: Use "virtual classes" and document them](#v-protip-1-use-virtual-classes-and-document-them-v)
   - [**ProTip 2**: Use CSS Modules and call them from `cn`](#v-protip-2-use-css-modules-and-call-them-from-cn-v)
-  - [**ProTip 3**: Make `cn` more powerful by integrating classnames library](#v-protip-3-make-cn-more-powerful-by-integrating-classnames-library-v)
+  - [**ProTip 3**: Make `cn` more powerful by integrating the `classnames` package](#v-protip-3-make-cn-more-powerful-by-integrating-the-classnames-package-v)
 - [**Epilogue**](#sunglasses-epilogue-sunglasses)
   - [**Appendix**](#appendix)
 
