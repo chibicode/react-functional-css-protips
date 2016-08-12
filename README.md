@@ -971,7 +971,7 @@ const convertCssModuleClassnames = (prefixToCssmodules) => (classNames) => (
 
     // If successfully converted, return both the CSS module version
     // and the pre-conversion version (for in-browser debugging).
-    return `${convertedClassname} ${className}` || className
+    return convertedClassname ? `${convertedClassname} ${className}` : className
   }).join(' ')
   : classNames
 )
