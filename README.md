@@ -1022,12 +1022,15 @@ This is very powerful when combined with functional CSS. **If you're using `cn` 
 Just modify `makeCn` like this:
 
 ```js
-import classnames from 'classnames'
+// Add an underscore so it doesn't collide w/ local variable names
+import _classnames from 'classnames'
+
+...
 
 const makeCn = (prefixToCssmodules) => (...args) => (
   // First run classnames, then run convertVirtualClassnames,
   // then pass the result to convertCssModuleClassnames
-  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(classnames(...args)))
+  convertCssModuleClassnames(prefixToCssmodules)(convertVirtualClassnames(_classnames(...args)))
 )
 ```
 
