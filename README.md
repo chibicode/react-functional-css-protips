@@ -1076,3 +1076,4 @@ Some miscellaneous links I found helpful:
 - [immutable-css](https://github.com/johnotander/immutable-css) by John Otander
 - [Atomic CSS Modules](https://medium.com/yplan-eng/atomic-css-modules-cb44d5993b27) by Michele Bertoli
 - [Atomic CSS](http://acss.io/) and [atomizer](https://github.com/acss-io/atomizer)
+- [Glamor - inline CSS](https://github.com/threepointone/glamor)
