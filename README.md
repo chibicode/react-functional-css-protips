@@ -441,7 +441,7 @@ Using components/templates to reuse markup will help, but you can't componentize
 
 If some component *must* have a height of 178px and be absolutely positioned from the bottom at 12px, then you **don't** want to make new classes called `height-178` and `bottom-12`. They aren't reusable and probably won't be documented. This goes against the philosophies of functional CSS.
 
-In this case, you should just use write regular CSS classes which **augment** functional classes:
+In this case, you should just use regular CSS classes which **augment** functional classes:
 
 ```js
 // some-box is NOT a functional class - it'll look like this:
