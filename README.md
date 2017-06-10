@@ -758,6 +758,10 @@ You'd still have to write regular CSS (or inline styles) when functional classes
 
 React offers many ways to write regular CSS. After trying many of them, **I concluded that [CSS modules](https://github.com/css-modules/css-modules) are the way to go**.
 
+#### UPDATE (Jun 10, 2017)
+
+I wrote this essay in mid-2016. More libraries have come out since then. As of Jun 10, 2017, **I recommend using [styled-components](https://github.com/styled-components/styled-components) or [styled-jsx](https://github.com/zeit/styled-jsx) over CSS modules.** I don't plan on updating this article, but I welcome pull requests!
+
 #### What are CSS modules?
 
 If you don't know what CSS modules are, here's an excellent introductory post: [What are CSS Modules and why do we need them?](https://css-tricks.com/css-modules-part-1-need/)
