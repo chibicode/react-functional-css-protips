@@ -2,6 +2,10 @@
 
 ![](https://cloud.githubusercontent.com/assets/992008/17532105/d52e78fa-5e33-11e6-94d2-4b77b801c671.png)
 
+### UPDATE (Jun 10, 2017)
+
+I wrote this essay in mid-2016. More libraries have come out since then. As of Jun 10, 2017, **I recommend using [styled-components](https://github.com/styled-components/styled-components) or [styled-jsx](https://github.com/zeit/styled-jsx) over CSS modules.** I don't plan on updating this article, but I welcome pull requests!
+
 ### Table of Contents
 
 This repo is a Three-Act <s>rant</s> essay.
